@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jiuji.cn.dao.TSendMessageMapper" >
+
+  <resultMap id="BaseResultMap" type="com.jiuji.cn.model.TSendMessage" >
+    <id column="F_Mobile" property="FMobile" jdbcType="VARCHAR" />
+    <result column="F_Checkcode" property="FCheckcode" jdbcType="VARCHAR" /> 
+    <result column="F_Time" property="FTime" jdbcType="TIMESTAMP" />
+    <result column="F_Ip" property="FIp" jdbcType="VARCHAR" /> 
+  </resultMap>
+  
+  <sql id="Base_Column_List" > 
+     F_Mobile,F_Checkcode,F_Time,F_Ip
+  </sql>
+  
+   <select id="select" resultMap="BaseResultMap" parameterType="com.jiuji.cn.model.TSendMessage">
+      select 
+         <include refid="Base_Column_List" />
+      from t_sendMessage
+      <where>
+		<if test="FMobile !=null and FMobile != ''">  
+	     	 AND F_Mobile =  #{FMobile,jdbcType=VARCHAR} 
+		</if> 
+		<if test="FCheckcode !=null and FCheckcode != ''">  
+	     	 AND F_Checkcode =  #{FCheckcode,jdbcType=VARCHAR} 
+		</if> 
+		<if test="FTime !=null and FTime != ''">  
+	     	 AND F_Time =  #{FTime,jdbcType=VARCHAR} 
+		</if> 
+		<if test="FIp !=null and FIp != ''">  
+	     	  AND F_Ip =  #{FIp,jdbcType=VARCHAR}  
+		</if>   
+     </where> 
+   </select>
+   
+     <select id="selectOnlyone" resultMap="BaseResultMap" parameterType="com.jiuji.cn.model.TSendMessage">
+     select 
+        <include refid="Base_Column_List" />
+     from t_sendMessage
+     <where>
+	<if test="FMobile !=null and FMobile != ''">  
+     	 AND F_Mobile =  #{FMobile,jdbcType=VARCHAR} 
+	</if> 
+	<if test="FCheckcode !=null and FCheckcode != ''">  
+     	 AND F_Checkcode =  #{FCheckcode,jdbcType=VARCHAR} 
+	</if> 
+	<if test="FTime !=null and FTime != ''">  
+     	 AND F_Time =  #{FTime,jdbcType=TIMESTAMP} 
+	</if> 
+	<if test="FIp !=null and FIp != ''">  
+     	  AND F_Ip =  #{FIp,jdbcType=VARCHAR}  
+	</if>   
+    </where> 
+   </select>
+   
+   <insert id="insert" parameterType="com.jiuji.cn.model.TSendMessage"> 
+    insert into t_sendMessage (F_Mobile, F_Checkcode, F_Time,F_Ip)
+     values (#{FMobile,jdbcType=VARCHAR}, #{FCheckcode,jdbcType=VARCHAR}, #{FTime,jdbcType=TIMESTAMP},
+      #{FIp,jdbcType=VARCHAR})  
+   </insert>
+   
+   <update id="update" parameterType="com.jiuji.cn.model.TSendMessage">
+      update t_sendMessage set F_Checkcode = #{FCheckcode,jdbcType=VARCHAR}  where F_Mobile = #{FMobile,jdbcType=VARCHAR}
+  </update>
+</mapper>

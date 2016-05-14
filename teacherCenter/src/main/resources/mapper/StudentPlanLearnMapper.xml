@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xue.dao.StudentPlanLearnMapper" >
+  <resultMap id="BaseResultMap" type="com.xue.model.StudentPlanLearn" >
+    <id column="plan_learn_id" property="planLearnId" jdbcType="INTEGER" />
+    <result column="tempo" property="tempo" jdbcType="INTEGER" />
+    <result column="total_learn_time" property="totalLearnTime" jdbcType="REAL" />
+    <result column="one_learn_time" property="oneLearnTime" jdbcType="REAL" />
+    <result column="two_learn_time" property="twoLearnTime" jdbcType="REAL" />
+    <result column="three_learn_time" property="threeLearnTime" jdbcType="REAL" />
+    <result column="review_rate" property="reviewRate" jdbcType="REAL" />
+    <result column="always_a_topic_quantity" property="alwaysATopicQuantity" jdbcType="INTEGER" />
+    <result column="correct" property="correct" jdbcType="REAL" />
+    <result column="knowledge_point_coverage" property="knowledgePointCoverage" jdbcType="REAL" />
+    <result column="two_practice_rate" property="twoPracticeRate" jdbcType="REAL" />
+    <result column="three_practice_rate" property="threePracticeRate" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    plan_learn_id, tempo, total_learn_time, one_learn_time, two_learn_time, three_learn_time, 
+    review_rate, always_a_topic_quantity, correct, knowledge_point_coverage, two_practice_rate, 
+    three_practice_rate
+  </sql>
+  
+   <select id="accessLearningTime" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    SELECT
+	spl.*
+	FROM
+		student_plan_learn spl
+	INNER JOIN student_plan_learn_set spls ON spl.plan_learn_id = spls.plan_learn_id
+	AND spls.plan_id = #{planId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from student_plan_learn
+    where plan_learn_id = #{planLearnId,jdbcType=INTEGER}
+  </select>
+  
+    <select id="findByIsGrasp" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+   	SELECT
+	count(*)
+	FROM
+		student_plan sp
+	INNER JOIN student_plan_phase_set spps ON sp.plan_id = #{planId,jdbcType=INTEGER}
+	AND spps.plan_id = sp.plan_id
+	INNER JOIN student_plan_phase spp ON spp.phase_subject_id = spps.phase_id
+	INNER JOIN student_plan_subject_point_set spsps ON spp.phase_subject_id = spsps.point_id
+	INNER JOIN student_plan_subject_point spsp ON spsp.plan_point_id = spsps.plan_point_id
+	AND spsp.is_grasp != 0
+  </select>
+  
+  <select id="queryStudentPlanLearnsByStudentId" resultMap="BaseResultMap" parameterType="java.lang.String">
+      	select spl.* from (( select *from student_plan_learn) spl
+	inner join student_plan_learn_set spls on  spl.plan_learn_id = spls.plan_learn_id
+	inner join (select *from student_plan where student_id=#{studentId,jdbcType=VARCHAR} order by plan_id desc limit 0,1 ) sp on sp.plan_id = spls.plan_id);
+ </select>
+ 
+ <select id="queryStudentPlanLearnsByPlan" resultMap="BaseResultMap" parameterType="com.xue.model.StudentPlan">
+       	select spl.* from (( select *from student_plan_learn) spl
+	inner join student_plan_learn_set spls on  spl.plan_learn_id = spls.plan_learn_id
+	inner join (select *from student_plan where student_id=#{studentId,jdbcType=VARCHAR} and plan_id=#{planId,jdbcType=VARCHAR}) sp on sp.plan_id = spls.plan_id);
+ </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from student_plan_learn
+    where plan_learn_id = #{planLearnId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xue.model.StudentPlanLearn" >
+    insert into student_plan_learn (plan_learn_id, tempo, total_learn_time, 
+      one_learn_time, two_learn_time, three_learn_time, 
+      review_rate, always_a_topic_quantity, correct, 
+      knowledge_point_coverage, two_practice_rate, three_practice_rate
+      )
+    values (#{planLearnId,jdbcType=INTEGER}, #{tempo,jdbcType=INTEGER}, #{totalLearnTime,jdbcType=REAL}, 
+      #{oneLearnTime,jdbcType=REAL}, #{twoLearnTime,jdbcType=REAL}, #{threeLearnTime,jdbcType=REAL}, 
+      #{reviewRate,jdbcType=REAL}, #{alwaysATopicQuantity,jdbcType=INTEGER}, #{correct,jdbcType=REAL}, 
+      #{knowledgePointCoverage,jdbcType=REAL}, #{twoPracticeRate,jdbcType=REAL}, #{threePracticeRate,jdbcType=REAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xue.model.StudentPlanLearn" >
+    insert into student_plan_learn
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="planLearnId != null" >
+        plan_learn_id,
+      </if>
+      <if test="tempo != null" >
+        tempo,
+      </if>
+      <if test="totalLearnTime != null" >
+        total_learn_time,
+      </if>
+      <if test="oneLearnTime != null" >
+        one_learn_time,
+      </if>
+      <if test="twoLearnTime != null" >
+        two_learn_time,
+      </if>
+      <if test="threeLearnTime != null" >
+        three_learn_time,
+      </if>
+      <if test="reviewRate != null" >
+        review_rate,
+      </if>
+      <if test="alwaysATopicQuantity != null" >
+        always_a_topic_quantity,
+      </if>
+      <if test="correct != null" >
+        correct,
+      </if>
+      <if test="knowledgePointCoverage != null" >
+        knowledge_point_coverage,
+      </if>
+      <if test="twoPracticeRate != null" >
+        two_practice_rate,
+      </if>
+      <if test="threePracticeRate != null" >
+        three_practice_rate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="planLearnId != null" >
+        #{planLearnId,jdbcType=INTEGER},
+      </if>
+      <if test="tempo != null" >
+        #{tempo,jdbcType=INTEGER},
+      </if>
+      <if test="totalLearnTime != null" >
+        #{totalLearnTime,jdbcType=REAL},
+      </if>
+      <if test="oneLearnTime != null" >
+        #{oneLearnTime,jdbcType=REAL},
+      </if>
+      <if test="twoLearnTime != null" >
+        #{twoLearnTime,jdbcType=REAL},
+      </if>
+      <if test="threeLearnTime != null" >
+        #{threeLearnTime,jdbcType=REAL},
+      </if>
+      <if test="reviewRate != null" >
+        #{reviewRate,jdbcType=REAL},
+      </if>
+      <if test="alwaysATopicQuantity != null" >
+        #{alwaysATopicQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="correct != null" >
+        #{correct,jdbcType=REAL},
+      </if>
+      <if test="knowledgePointCoverage != null" >
+        #{knowledgePointCoverage,jdbcType=REAL},
+      </if>
+      <if test="twoPracticeRate != null" >
+        #{twoPracticeRate,jdbcType=REAL},
+      </if>
+      <if test="threePracticeRate != null" >
+        #{threePracticeRate,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xue.model.StudentPlanLearn" >
+    update student_plan_learn
+    <set >
+      <if test="tempo != null" >
+        tempo = #{tempo,jdbcType=INTEGER},
+      </if>
+      <if test="totalLearnTime != null" >
+        total_learn_time = #{totalLearnTime,jdbcType=REAL},
+      </if>
+      <if test="oneLearnTime != null" >
+        one_learn_time = #{oneLearnTime,jdbcType=REAL},
+      </if>
+      <if test="twoLearnTime != null" >
+        two_learn_time = #{twoLearnTime,jdbcType=REAL},
+      </if>
+      <if test="threeLearnTime != null" >
+        three_learn_time = #{threeLearnTime,jdbcType=REAL},
+      </if>
+      <if test="reviewRate != null" >
+        review_rate = #{reviewRate,jdbcType=REAL},
+      </if>
+      <if test="alwaysATopicQuantity != null" >
+        always_a_topic_quantity = #{alwaysATopicQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="correct != null" >
+        correct = #{correct,jdbcType=REAL},
+      </if>
+      <if test="knowledgePointCoverage != null" >
+        knowledge_point_coverage = #{knowledgePointCoverage,jdbcType=REAL},
+      </if>
+      <if test="twoPracticeRate != null" >
+        two_practice_rate = #{twoPracticeRate,jdbcType=REAL},
+      </if>
+      <if test="threePracticeRate != null" >
+        three_practice_rate = #{threePracticeRate,jdbcType=REAL},
+      </if>
+    </set>
+    where plan_learn_id = #{planLearnId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xue.model.StudentPlanLearn" >
+    update student_plan_learn
+    set tempo = #{tempo,jdbcType=INTEGER},
+      total_learn_time = #{totalLearnTime,jdbcType=REAL},
+      one_learn_time = #{oneLearnTime,jdbcType=REAL},
+      two_learn_time = #{twoLearnTime,jdbcType=REAL},
+      three_learn_time = #{threeLearnTime,jdbcType=REAL},
+      review_rate = #{reviewRate,jdbcType=REAL},
+      always_a_topic_quantity = #{alwaysATopicQuantity,jdbcType=INTEGER},
+      correct = #{correct,jdbcType=REAL},
+      knowledge_point_coverage = #{knowledgePointCoverage,jdbcType=REAL},
+      two_practice_rate = #{twoPracticeRate,jdbcType=REAL},
+      three_practice_rate = #{threePracticeRate,jdbcType=REAL}
+    where plan_learn_id = #{planLearnId,jdbcType=INTEGER}
+  </update>
+</mapper>

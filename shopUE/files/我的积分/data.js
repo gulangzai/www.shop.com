@@ -1,0 +1,37 @@
+﻿$axure.loadCurrentPage({
+  "url":"我的积分.html",
+  "generationDate":new Date(1458745316941.71),
+  "isCanvasEnabled":false,
+  "variables":["content",
+"NewVariable"],
+  "page":{
+    "packageId":"65e5f09ffcae44a4a2fbda41cde14cf5",
+    "type":"Axure:Page",
+    "name":"我的积分",
+    "notes":{
+},
+    "style":{
+      "baseStyle":"627587b6038d43cca051c114ac41ad32",
+      "pageAlignment":"near",
+      "fill":{
+        "fillType":"solid",
+        "color":0xFFFFFFFF},
+      "image":null,
+      "imageHorizontalAlignment":"near",
+      "imageVerticalAlignment":"near",
+      "imageRepeat":"auto",
+      "favicon":null,
+      "sketchFactor":"0",
+      "colorStyle":"appliedColor",
+      "fontName":"应用字体",
+      "borderWidth":"0"},
+    "adaptiveStyles":{
+},
+    "interactionMap":{
+},
+    "diagram":{
+      "objects":[]}},
+  "masters":{
+},
+  "objectPaths":{
+}});

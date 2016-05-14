@@ -1,0 +1,9 @@
+eclipse.preferences.version=1
+encoding//src/main/java/com/qiuji/cn/interceptor/CommonInterceptor.java=UTF-8
+encoding//src/main/java/javacommon/base/CommonController.java=UTF-8
+encoding//src/main/java/javacommon/util/CipherUtil.java=UTF-8
+encoding//src/main/java/javacommon/util/FtpUtil.java=UTF-8
+encoding//src/main/java/javacommon/util/HttpRequestUtils.java=UTF-8
+encoding//src/main/java/javacommon/util/alipay/util/AlipayMd5Encrypt.java=UTF-8
+encoding//src/main/webapp/WEB-INF/view/modules/test/test.jsp=UTF-8
+encoding/<project>=UTF-8

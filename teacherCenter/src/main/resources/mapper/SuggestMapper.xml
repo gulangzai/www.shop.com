@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xue.dao.SuggestMapper" >
+  <resultMap id="BaseResultMap" type="com.xue.model.Suggest" >
+    <id column="suggest_id" property="noticeId" jdbcType="VARCHAR" />
+    <result column="suggest_topic" property="noticeTopic" jdbcType="VARCHAR" />
+    <result column="suggest_people" property="noticePeople" jdbcType="VARCHAR" /> 
+    <result column="suggest_content" property="noticeContent" jdbcType="VARCHAR" />
+    <result column="suggest_date" property="noticeDate" jdbcType="VARCHAR" /> 
+  </resultMap>
+  
+  <resultMap type="com.xue.dto.PageBean" id="pageBean"></resultMap>
+  
+  <sql id="Base_Column_List" >
+       suggest_id,suggest_topic,suggest_people,suggest_content,suggest_date
+  </sql>
+  <select id="getAllSuggest" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from suggest s
+  </select> 
+  
+  <select id="queryByKeyword" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+     select 
+    <include refid="Base_Column_List" />
+    from student_info
+    where    is_del='0' and student_id like concat('%',#{keyword,jdbcType=VARCHAR}, '%') limit #{startNum,jdbcType=INTEGER},5
+  </select>
+  
+  <select id="queryAllStudentsForPage" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+     select 
+    <include refid="Base_Column_List" />
+    from student_info where is_del='0' limit #{startNum,jdbcType=INTEGER},5
+  </select>
+  
+   <select id="queryAllStudents" resultMap="BaseResultMap">
+     select 
+    <include refid="Base_Column_List" />
+    from student_info where is_del='0'
+  </select>
+  
+  <select id="queryStudentByShop" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+     select si.* from (select *from student_info where is_del='0') si
+     inner join  student_shop_set sss on si.student_id=sss.STUDENT_ID
+     inner join (select *from shop where major_id=#{majorId,jdbcType=VARCHAR}) s on sss.SHOP_ID=s.SHOP_ID limit #{startNum,jdbcType=INTEGER},5
+  </select>
+   
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from student_info
+    where student_id = #{studentId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.xue.model.StudentInfo" >
+    insert into student_info (student_id, student_name, mobile, 
+      email, state, password, 
+      last_pwd, create_time, last_login_time, 
+      current_login_time, cookie_value, is_del
+      )
+    values (#{studentId,jdbcType=VARCHAR}, #{studentName,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{lastPwd,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, #{lastLoginTime,jdbcType=VARCHAR}, 
+      #{currentLoginTime,jdbcType=VARCHAR}, #{cookieValue,jdbcType=VARCHAR}, #{isDel,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xue.model.StudentInfo" >
+    insert into student_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="studentId != null" >
+        student_id,
+      </if>
+      <if test="studentName != null" >
+        student_name,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="lastPwd != null" >
+        last_pwd,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="lastLoginTime != null" >
+        last_login_time,
+      </if>
+      <if test="currentLoginTime != null" >
+        current_login_time,
+      </if>
+      <if test="cookieValue != null" >
+        cookie_value,
+      </if>
+      <if test="isDel != null" >
+        is_del,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="studentId != null" >
+        #{studentId,jdbcType=VARCHAR},
+      </if>
+      <if test="studentName != null" >
+        #{studentName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="lastPwd != null" >
+        #{lastPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null" >
+        #{lastLoginTime,jdbcType=VARCHAR},
+      </if>
+      <if test="currentLoginTime != null" >
+        #{currentLoginTime,jdbcType=VARCHAR},
+      </if>
+      <if test="cookieValue != null" >
+        #{cookieValue,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xue.model.User" >
+    update student_info
+    <set >
+      <if test="userName != null" >
+        userName = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileNumber != null" >
+        mobileNumber = #{mobileNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="organization != null" >
+        organization = #{organization,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xue.model.StudentInfo" >
+    update student_info
+    set student_name = #{studentName,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      last_pwd = #{lastPwd,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      last_login_time = #{lastLoginTime,jdbcType=VARCHAR},
+      current_login_time = #{currentLoginTime,jdbcType=VARCHAR},
+      cookie_value = #{cookieValue,jdbcType=VARCHAR},
+      is_del = #{isDel,jdbcType=VARCHAR}
+    where student_id = #{studentId,jdbcType=VARCHAR}
+  </update>
+  
+  <update id="resetPassword" parameterType="java.lang.String">
+      update student_info   set password = '123456'    where mobile = #{mobile,jdbcType=VARCHAR}
+  </update>
+  
+  <update id="deleteStudentByPhone"   parameterType="java.util.HashMap">
+      update student_info   set is_del = '1'    where mobile = #{mobile,jdbcType=VARCHAR}
+  </update>
+  
+</mapper>

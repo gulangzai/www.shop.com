@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="fileService" class="cn.lanbao.com.service.FileServiceImpl">
+	  <!--  <property name="roleDao" ref="roleDao"></property> -->
+	</bean>
+		
+	<bean id="roleService" class="cn.lanbao.com.service.RoleServiceImpl">
+	   <property name="roleDao" ref="roleDao"></property>
+	</bean>
+  
+     <bean id="userService" class="cn.lanbao.com.service.UserServiceImpl">
+         <property name="userDao" ref="userDao"></property>
+     </bean>
+     
+     <bean id="studentService" class="cn.lanbao.com.service.StudentServiceImpl">
+         <property name="studentDao" ref="studentDao"></property>
+     </bean>
+     
+</beans>

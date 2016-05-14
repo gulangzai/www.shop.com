@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xue.dao.ShopMapper" >
+  <resultMap id="BaseResultMap" type="com.xue.model.Shop" >
+    <id column="SHOP_ID" property="shopId" jdbcType="VARCHAR" />
+    <result column="SHOP_NAME" property="shopName" jdbcType="VARCHAR" />
+    <result column="SHOP_DESC" property="shopDesc" jdbcType="VARCHAR" />
+    <result column="SHOP_NUM" property="shopNum" jdbcType="INTEGER" />
+    <result column="SHOP_PRICE" property="shopPrice" jdbcType="REAL" />
+    <result column="SHOP_STATE" property="shopState" jdbcType="INTEGER" />
+    <result column="SHOP_TYPE" property="shopType" jdbcType="VARCHAR" />
+    <result column="shop_Time" property="shopTime" jdbcType="VARCHAR" />
+    <result column="SHOP_PIC" property="shopPic" jdbcType="VARCHAR" />
+    <result column="VALIDITY" property="validity" jdbcType="TIMESTAMP" />
+    <result column="DISCOUNT" property="discount" jdbcType="REAL" />
+    <result column="ORDER_BY" property="orderBy" jdbcType="INTEGER" />
+    <result column="PAY_WAY" property="payWay" jdbcType="VARCHAR" />
+    <result column="PAY_SOURCE" property="paySource" jdbcType="VARCHAR" />
+    <result column="IS_DEL" property="isDel" jdbcType="INTEGER" />
+    <result column="PAY_NUMBER" property="payNumber" jdbcType="INTEGER" />
+    <result column="STUDY_TIME" property="studyTime" jdbcType="VARCHAR" />
+    <result column="MAJOR_ID" property="majorId" jdbcType="VARCHAR" />
+    <result column="MAJOR_NAME" property="majorName" jdbcType="VARCHAR" />
+    <result column="SUBJECT_ID" property="subjectId" jdbcType="VARCHAR" />
+    <result column="SUBJECT_NAME" property="subjectName" jdbcType="VARCHAR" />
+    <result column="CLASSES_ID" property="classesId" jdbcType="VARCHAR" />
+    <result column="CLASSES_NAME" property="classesName" jdbcType="VARCHAR" />
+    <result column="CLASSES_ORDER" property="classesOrder" jdbcType="INTEGER" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="PHASE_NUMBER" property="phaseNumber" jdbcType="INTEGER" />
+    <result column="LIVE_URL" property="liveUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap type="com.xue.dto.StudentAndShop" id="StudentAndShopMap">
+      <id column="student_id" property="studentId" jdbcType="VARCHAR" />
+      <result column="student_name" property="studentName" jdbcType="VARCHAR" />
+      <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    SHOP_ID, SHOP_NAME, SHOP_DESC, SHOP_NUM, SHOP_PRICE, SHOP_STATE, SHOP_TYPE, SHOP_PIC, 
+    VALIDITY, DISCOUNT, ORDER_BY, PAY_WAY, PAY_SOURCE, IS_DEL, PAY_NUMBER, STUDY_TIME, 
+    MAJOR_ID, MAJOR_NAME, SUBJECT_ID, SUBJECT_NAME, CLASSES_ID, CLASSES_NAME, CLASSES_ORDER, 
+    DESCRIPTION, PHASE_NUMBER, LIVE_URL
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from shop
+    where SHOP_ID = #{shopId,jdbcType=VARCHAR}
+  </select>
+  <select id="findSubClassByDetailId" resultMap="BaseResultMap" parameterType="com.xue.vo.query.ShopQuery" >
+    select 
+    <include refid="Base_Column_List" />
+    from shop
+    <where>
+		<if test="majorId !=null and majorId != ''">  
+	     	 AND MAJOR_ID =  #{majorId,jdbcType=VARCHAR} 
+		</if> 
+		<if test="subjectId !=null and subjectId != ''">  
+	     	 AND SUBJECT_ID =  #{subjectId,jdbcType=VARCHAR} 
+		</if>
+		<if test="shopType !=null and shopType != ''">  
+	     	 AND SHOP_TYPE =  #{shopType,jdbcType=VARCHAR} 
+		</if>
+	</where>
+		ORDER BY SHOP_PRICE ASC
+  </select>
+   <select id="findByShopQuery" resultMap="BaseResultMap" parameterType="com.xue.vo.query.ShopQuery" >
+    SELECT 
+	  s.*
+	  FROM
+		  shop s
+	  INNER JOIN student_shop_set sss ON s.SHOP_ID = sss.SHOP_ID AND s.SHOP_TYPE = 2
+	  AND sss.STUDENT_ID =  #{studentId,jdbcType=VARCHAR}  AND s.MAJOR_ID = #{majorId,jdbcType=VARCHAR}
+  </select>
+  <select id="findByFreeShopQuery" resultMap="BaseResultMap" parameterType="com.xue.vo.query.ShopQuery" >
+	    SELECT
+			s.*
+		FROM
+			shop s
+		WHERE
+			s.MAJOR_ID = #{majorId,jdbcType=VARCHAR}
+		AND s.SHOP_TYPE = 9 ORDER BY ORDER_BY
+  </select>
+  <select id="findShopByQuery" resultMap="BaseResultMap" parameterType="com.xue.vo.query.ShopQuery" >
+    select 
+    <include refid="Base_Column_List" />
+    from shop
+    <where>
+        <if test="shopTime !=null and shopTime != ''">  
+	     	 AND shop_time =  #{shopTime,jdbcType=VARCHAR} 
+		</if> 
+		<if test="shopType !=null and shopType != ''">  
+	     	 AND shop_type =  #{shopType,jdbcType=VARCHAR} 
+		</if>  
+		<if test="majorId !=null and majorId != ''">  
+	     	 AND MAJOR_ID =  #{majorId,jdbcType=VARCHAR} 
+		</if> 
+		<if test="subjectId !=null and subjectId != ''">  
+	     	 AND SUBJECT_ID =  #{subjectId,jdbcType=VARCHAR} 
+		</if>
+		<if test="classesId !=null and classesId != ''">  
+	     	 AND CLASSES_ID =  #{classesId,jdbcType=VARCHAR} 
+		</if>
+	</where>  limit #{startNum,jdbcType=INTEGER},5
+  </select>
+  
+  <select id="findShopByQueryCount"  resultType="java.lang.Integer" parameterType="com.xue.vo.query.ShopQuery">
+   select 
+      count(*)
+    from shop
+    <where>
+        <if test="shopTime !=null and shopTime != ''">  
+	     	 AND shop_time =  #{shopTime,jdbcType=VARCHAR} 
+		</if> 
+		<if test="shopType !=null and shopType != ''">  
+	     	 AND shop_type =  #{shopType,jdbcType=VARCHAR} 
+		</if>  
+		<if test="majorId !=null and majorId != ''">  
+	     	 AND MAJOR_ID =  #{majorId,jdbcType=VARCHAR} 
+		</if> 
+		<if test="subjectId !=null and subjectId != ''">  
+	     	 AND SUBJECT_ID =  #{subjectId,jdbcType=VARCHAR} 
+		</if>
+		<if test="classesId !=null and classesId != ''">  
+	     	 AND CLASSES_ID =  #{classesId,jdbcType=VARCHAR} 
+		</if>
+	</where> 
+  </select>
+  
+  <select id="queryAllStudentShop" resultMap="StudentAndShopMap" parameterType="com.xue.dto.OpenCourseRecodeQuery">
+    select si.*, s.shopName,s.validity from shop s
+    INNER JOIN student_shop_set sss on s.shop_id=sss.shop_id
+    inner JOIN student_info si 
+    <if test="studentName!=null and studentName!=''">
+        studentName=#{studentName,jdbcType="VARCHAR"}
+    </if>
+    <if test="mobile!=null and mobile!=''">
+        mobile=#{mobile,jdbcType="VARCHAR"}
+    </if>
+    on sss.student_id =  si.student_id limit #{startNum,jdbcType=INTEGER},5;
+  </select>
+  
+  <select id="queryShopByStudentId" resultMap="BaseResultMap" parameterType="java.lang.String">
+   select s.* from shop s
+    INNER JOIN student_shop_set sss on s.shop_id=sss.shop_id
+    inner join (select *from  student_info  where  student_Id=#{studentId,jdbcType=VARCHAR}) si  
+    on sss.student_id =  si.student_id;
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from shop
+    where SHOP_ID = #{shopId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.xue.model.Shop" >
+    insert into shop (SHOP_ID, SHOP_NAME, SHOP_DESC, 
+      SHOP_NUM, SHOP_PRICE, SHOP_STATE, 
+      SHOP_TYPE, SHOP_PIC, VALIDITY, 
+      DISCOUNT, ORDER_BY, PAY_WAY, 
+      PAY_SOURCE, IS_DEL, PAY_NUMBER, 
+      STUDY_TIME, MAJOR_ID, MAJOR_NAME, 
+      SUBJECT_ID, SUBJECT_NAME, CLASSES_ID, 
+      CLASSES_NAME, CLASSES_ORDER, DESCRIPTION, 
+      PHASE_NUMBER, LIVE_URL)
+    values (#{shopId,jdbcType=VARCHAR}, #{shopName,jdbcType=VARCHAR}, #{shopDesc,jdbcType=VARCHAR}, 
+      #{shopNum,jdbcType=INTEGER}, #{shopPrice,jdbcType=REAL}, #{shopState,jdbcType=INTEGER}, 
+      #{shopType,jdbcType=VARCHAR}, #{shopPic,jdbcType=VARCHAR}, #{validity,jdbcType=TIMESTAMP}, 
+      #{discount,jdbcType=REAL}, #{orderBy,jdbcType=INTEGER}, #{payWay,jdbcType=VARCHAR}, 
+      #{paySource,jdbcType=VARCHAR}, #{isDel,jdbcType=INTEGER}, #{payNumber,jdbcType=INTEGER}, 
+      #{studyTime,jdbcType=VARCHAR}, #{majorId,jdbcType=VARCHAR}, #{majorName,jdbcType=VARCHAR}, 
+      #{subjectId,jdbcType=VARCHAR}, #{subjectName,jdbcType=VARCHAR}, #{classesId,jdbcType=VARCHAR}, 
+      #{classesName,jdbcType=VARCHAR}, #{classesOrder,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR}, 
+      #{phaseNumber,jdbcType=INTEGER}, #{liveUrl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xue.model.Shop" >
+    insert into shop
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="shopId != null" >
+        SHOP_ID,
+      </if>
+      <if test="shopName != null" >
+        SHOP_NAME,
+      </if>
+      <if test="shopDesc != null" >
+        SHOP_DESC,
+      </if>
+      <if test="shopNum != null" >
+        SHOP_NUM,
+      </if>
+      <if test="shopPrice != null" >
+        SHOP_PRICE,
+      </if>
+      <if test="shopState != null" >
+        SHOP_STATE,
+      </if>
+      <if test="shopType != null" >
+        SHOP_TYPE,
+      </if>
+      <if test="shopPic != null" >
+        SHOP_PIC,
+      </if>
+      <if test="validity != null" >
+        VALIDITY,
+      </if>
+      <if test="discount != null" >
+        DISCOUNT,
+      </if>
+      <if test="orderBy != null" >
+        ORDER_BY,
+      </if>
+      <if test="payWay != null" >
+        PAY_WAY,
+      </if>
+      <if test="paySource != null" >
+        PAY_SOURCE,
+      </if>
+      <if test="isDel != null" >
+        IS_DEL,
+      </if>
+      <if test="payNumber != null" >
+        PAY_NUMBER,
+      </if>
+      <if test="studyTime != null" >
+        STUDY_TIME,
+      </if>
+      <if test="majorId != null" >
+        MAJOR_ID,
+      </if>
+      <if test="majorName != null" >
+        MAJOR_NAME,
+      </if>
+      <if test="subjectId != null" >
+        SUBJECT_ID,
+      </if>
+      <if test="subjectName != null" >
+        SUBJECT_NAME,
+      </if>
+      <if test="classesId != null" >
+        CLASSES_ID,
+      </if>
+      <if test="classesName != null" >
+        CLASSES_NAME,
+      </if>
+      <if test="classesOrder != null" >
+        CLASSES_ORDER,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+      <if test="phaseNumber != null" >
+        PHASE_NUMBER,
+      </if>
+      <if test="liveUrl != null" >
+        LIVE_URL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="shopId != null" >
+        #{shopId,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName != null" >
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopDesc != null" >
+        #{shopDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="shopNum != null" >
+        #{shopNum,jdbcType=INTEGER},
+      </if>
+      <if test="shopPrice != null" >
+        #{shopPrice,jdbcType=REAL},
+      </if>
+      <if test="shopState != null" >
+        #{shopState,jdbcType=INTEGER},
+      </if>
+      <if test="shopType != null" >
+        #{shopType,jdbcType=VARCHAR},
+      </if>
+      <if test="shopPic != null" >
+        #{shopPic,jdbcType=VARCHAR},
+      </if>
+      <if test="validity != null" >
+        #{validity,jdbcType=TIMESTAMP},
+      </if>
+      <if test="discount != null" >
+        #{discount,jdbcType=REAL},
+      </if>
+      <if test="orderBy != null" >
+        #{orderBy,jdbcType=INTEGER},
+      </if>
+      <if test="payWay != null" >
+        #{payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="paySource != null" >
+        #{paySource,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="payNumber != null" >
+        #{payNumber,jdbcType=INTEGER},
+      </if>
+      <if test="studyTime != null" >
+        #{studyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="majorId != null" >
+        #{majorId,jdbcType=VARCHAR},
+      </if>
+      <if test="majorName != null" >
+        #{majorName,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectId != null" >
+        #{subjectId,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectName != null" >
+        #{subjectName,jdbcType=VARCHAR},
+      </if>
+      <if test="classesId != null" >
+        #{classesId,jdbcType=VARCHAR},
+      </if>
+      <if test="classesName != null" >
+        #{classesName,jdbcType=VARCHAR},
+      </if>
+      <if test="classesOrder != null" >
+        #{classesOrder,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="phaseNumber != null" >
+        #{phaseNumber,jdbcType=INTEGER},
+      </if>
+      <if test="liveUrl != null" >
+        #{liveUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xue.model.Shop" >
+    update shop
+    <set >
+      <if test="shopName != null" >
+        SHOP_NAME = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopDesc != null" >
+        SHOP_DESC = #{shopDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="shopNum != null" >
+        SHOP_NUM = #{shopNum,jdbcType=INTEGER},
+      </if>
+      <if test="shopPrice != null" >
+        SHOP_PRICE = #{shopPrice,jdbcType=REAL},
+      </if>
+      <if test="shopState != null" >
+        SHOP_STATE = #{shopState,jdbcType=INTEGER},
+      </if>
+      <if test="shopType != null" >
+        SHOP_TYPE = #{shopType,jdbcType=VARCHAR},
+      </if>
+      <if test="shopPic != null" >
+        SHOP_PIC = #{shopPic,jdbcType=VARCHAR},
+      </if>
+      <if test="validity != null" >
+        VALIDITY = #{validity,jdbcType=TIMESTAMP},
+      </if>
+      <if test="discount != null" >
+        DISCOUNT = #{discount,jdbcType=REAL},
+      </if>
+      <if test="orderBy != null" >
+        ORDER_BY = #{orderBy,jdbcType=INTEGER},
+      </if>
+      <if test="payWay != null" >
+        PAY_WAY = #{payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="paySource != null" >
+        PAY_SOURCE = #{paySource,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null" >
+        IS_DEL = #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="payNumber != null" >
+        PAY_NUMBER = #{payNumber,jdbcType=INTEGER},
+      </if>
+      <if test="studyTime != null" >
+        STUDY_TIME = #{studyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="majorId != null" >
+        MAJOR_ID = #{majorId,jdbcType=VARCHAR},
+      </if>
+      <if test="majorName != null" >
+        MAJOR_NAME = #{majorName,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectId != null" >
+        SUBJECT_ID = #{subjectId,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectName != null" >
+        SUBJECT_NAME = #{subjectName,jdbcType=VARCHAR},
+      </if>
+      <if test="classesId != null" >
+        CLASSES_ID = #{classesId,jdbcType=VARCHAR},
+      </if>
+      <if test="classesName != null" >
+        CLASSES_NAME = #{classesName,jdbcType=VARCHAR},
+      </if>
+      <if test="classesOrder != null" >
+        CLASSES_ORDER = #{classesOrder,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="phaseNumber != null" >
+        PHASE_NUMBER = #{phaseNumber,jdbcType=INTEGER},
+      </if>
+      <if test="liveUrl != null" >
+        LIVE_URL = #{liveUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SHOP_ID = #{shopId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xue.model.Shop" >
+    update shop
+    set SHOP_NAME = #{shopName,jdbcType=VARCHAR},
+      SHOP_DESC = #{shopDesc,jdbcType=VARCHAR},
+      SHOP_NUM = #{shopNum,jdbcType=INTEGER},
+      SHOP_PRICE = #{shopPrice,jdbcType=REAL},
+      SHOP_STATE = #{shopState,jdbcType=INTEGER},
+      SHOP_TYPE = #{shopType,jdbcType=VARCHAR},
+      SHOP_PIC = #{shopPic,jdbcType=VARCHAR},
+      VALIDITY = #{validity,jdbcType=TIMESTAMP},
+      DISCOUNT = #{discount,jdbcType=REAL},
+      ORDER_BY = #{orderBy,jdbcType=INTEGER},
+      PAY_WAY = #{payWay,jdbcType=VARCHAR},
+      PAY_SOURCE = #{paySource,jdbcType=VARCHAR},
+      IS_DEL = #{isDel,jdbcType=INTEGER},
+      PAY_NUMBER = #{payNumber,jdbcType=INTEGER},
+      STUDY_TIME = #{studyTime,jdbcType=VARCHAR},
+      MAJOR_ID = #{majorId,jdbcType=VARCHAR},
+      MAJOR_NAME = #{majorName,jdbcType=VARCHAR},
+      SUBJECT_ID = #{subjectId,jdbcType=VARCHAR},
+      SUBJECT_NAME = #{subjectName,jdbcType=VARCHAR},
+      CLASSES_ID = #{classesId,jdbcType=VARCHAR},
+      CLASSES_NAME = #{classesName,jdbcType=VARCHAR},
+      CLASSES_ORDER = #{classesOrder,jdbcType=INTEGER},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      PHASE_NUMBER = #{phaseNumber,jdbcType=INTEGER},
+      LIVE_URL = #{liveUrl,jdbcType=VARCHAR}
+    where SHOP_ID = #{shopId,jdbcType=VARCHAR}
+  </update>
+</mapper>

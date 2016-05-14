@@ -1,0 +1,273 @@
+﻿$axure.loadCurrentPage({
+  "url":"打开电视.html",
+  "generationDate":new Date(1456035911834.3),
+  "isCanvasEnabled":false,
+  "variables":["content",
+"NewVariable"],
+  "page":{
+    "packageId":"e6e8d9dfb26343449517b6bb18823e13",
+    "type":"Axure:Page",
+    "name":"打开电视",
+    "notes":{
+},
+    "style":{
+      "baseStyle":"627587b6038d43cca051c114ac41ad32",
+      "pageAlignment":"near",
+      "fill":{
+        "fillType":"solid",
+        "color":0xFFFFFFFF},
+      "image":null,
+      "imageHorizontalAlignment":"near",
+      "imageVerticalAlignment":"near",
+      "imageRepeat":"auto",
+      "favicon":null,
+      "sketchFactor":"0",
+      "colorStyle":"appliedColor",
+      "fontName":"应用字体",
+      "borderWidth":"0"},
+    "adaptiveStyles":{
+},
+    "interactionMap":{
+},
+    "diagram":{
+      "objects":[{
+          "id":"0f6ed6b0687d4731a93287f2377fe167",
+          "label":"tv",
+          "type":"buttonShape",
+          "styleType":"buttonShape",
+          "visible":true,
+          "style":{
+            "location":{
+              "x":190,
+              "y":90},
+            "size":{
+              "width":240,
+              "height":150}},
+          "adaptiveStyles":{
+},
+          "objects":[{
+              "id":"0a51d8f615e84c03815d36367c3ab1b2",
+              "label":"",
+              "isContained":true,
+              "type":"richTextPanel",
+              "styleType":"paragraph",
+              "visible":true,
+              "style":{
+                "location":{
+                  "x":190,
+                  "y":90},
+                "size":{
+                  "width":240,
+                  "height":150}},
+              "adaptiveStyles":{
+}}],
+          "images":{
+            "normal~":"images/打开电视/tv_u0.png"}},
+{
+          "id":"3e7e19aa2fb343189623651be470003a",
+          "label":"",
+          "type":"buttonShape",
+          "styleType":"buttonShape",
+          "visible":true,
+          "style":{
+            "location":{
+              "x":450,
+              "y":90},
+            "size":{
+              "width":70,
+              "height":150}},
+          "adaptiveStyles":{
+},
+          "objects":[{
+              "id":"0f6643e86e8745b98f194a50d62d7810",
+              "label":"",
+              "isContained":true,
+              "type":"richTextPanel",
+              "styleType":"paragraph",
+              "visible":true,
+              "style":{
+                "location":{
+                  "x":450,
+                  "y":90},
+                "size":{
+                  "width":70,
+                  "height":150}},
+              "adaptiveStyles":{
+}}],
+          "images":{
+            "normal~":"images/打开电视/u2.png"}},
+{
+          "id":"4616dc0b32ff4d25b0ca8f51a68fab2e",
+          "label":"",
+          "type":"buttonShape",
+          "styleType":"buttonShape",
+          "visible":true,
+          "style":{
+            "location":{
+              "x":460,
+              "y":110},
+            "size":{
+              "width":50,
+              "height":10}},
+          "adaptiveStyles":{
+},
+          "objects":[{
+              "id":"b8da943143d74e7fb7656bc36af63e06",
+              "label":"",
+              "isContained":true,
+              "type":"richTextPanel",
+              "styleType":"paragraph",
+              "visible":true,
+              "style":{
+                "location":{
+                  "x":460,
+                  "y":110},
+                "size":{
+                  "width":50,
+                  "height":10}},
+              "adaptiveStyles":{
+}}],
+          "interactionMap":{
+            "onClick":{
+              "description":"OnClick",
+              "cases":[{
+                  "description":"用例 1",
+                  "isNewIfGroup":false,
+                  "actions":[{
+                      "action":"setFunction",
+                      "description":"设置 值于 content = &quot;放入光盘&quot;",
+                      "expr":{
+                        "exprType":"block",
+                        "subExprs":[{
+                            "exprType":"fcall",
+                            "functionName":"SetGlobalVariableValue",
+                            "arguments":[{
+                                "exprType":"globalVariableLiteral",
+                                "variableName":"content"},
+{
+                                "exprType":"stringLiteral",
+                                "value":"放入光盘",
+                                "stos":[]}]}]}},
+{
+                      "action":"setFunction",
+                      "description":"设置 文字于 tv = 值于 content",
+                      "expr":{
+                        "exprType":"block",
+                        "subExprs":[{
+                            "exprType":"fcall",
+                            "functionName":"SetWidgetRichText",
+                            "arguments":[{
+                                "exprType":"pathLiteral",
+                                "isThis":false,
+                                "isFocused":false,
+                                "isTarget":false,
+                                "value":["0a51d8f615e84c03815d36367c3ab1b2"]},
+{
+                                "exprType":"fcall",
+                                "functionName":"GetGlobalVariableValue",
+                                "arguments":[{
+                                    "exprType":"globalVariableLiteral",
+                                    "variableName":"content"}]},
+{
+                                "exprType":"booleanLiteral",
+                                "value":true}]}]}}]}]}},
+          "tabbable":true,
+          "images":{
+            "normal~":"images/打开电视/u4.png"}},
+{
+          "id":"85620da3e60342b6b52bd3bb8ea8a1d7",
+          "label":"kaiguan",
+          "type":"buttonShape",
+          "styleType":"buttonShape",
+          "visible":true,
+          "style":{
+            "location":{
+              "x":477.5,
+              "y":175},
+            "size":{
+              "width":15,
+              "height":15}},
+          "adaptiveStyles":{
+},
+          "objects":[{
+              "id":"808baf21b6844101819f6e862795983f",
+              "label":"",
+              "isContained":true,
+              "type":"richTextPanel",
+              "styleType":"paragraph",
+              "visible":true,
+              "style":{
+                "location":{
+                  "x":477.5,
+                  "y":175},
+                "size":{
+                  "width":15,
+                  "height":15}},
+              "adaptiveStyles":{
+}}],
+          "interactionMap":{
+            "onClick":{
+              "description":"OnClick",
+              "cases":[{
+                  "description":"用例 1",
+                  "isNewIfGroup":false,
+                  "actions":[{
+                      "action":"setFunction",
+                      "description":"设置 值于 content = &quot;打开电脑&quot;",
+                      "expr":{
+                        "exprType":"block",
+                        "subExprs":[{
+                            "exprType":"fcall",
+                            "functionName":"SetGlobalVariableValue",
+                            "arguments":[{
+                                "exprType":"globalVariableLiteral",
+                                "variableName":"content"},
+{
+                                "exprType":"stringLiteral",
+                                "value":"打开电脑",
+                                "stos":[]}]}]}},
+{
+                      "action":"setFunction",
+                      "description":"设置 文字于 tv = 值于 content",
+                      "expr":{
+                        "exprType":"block",
+                        "subExprs":[{
+                            "exprType":"fcall",
+                            "functionName":"SetWidgetRichText",
+                            "arguments":[{
+                                "exprType":"pathLiteral",
+                                "isThis":false,
+                                "isFocused":false,
+                                "isTarget":false,
+                                "value":["0a51d8f615e84c03815d36367c3ab1b2"]},
+{
+                                "exprType":"fcall",
+                                "functionName":"GetGlobalVariableValue",
+                                "arguments":[{
+                                    "exprType":"globalVariableLiteral",
+                                    "variableName":"content"}]},
+{
+                                "exprType":"booleanLiteral",
+                                "value":true}]}]}}]}]}},
+          "tabbable":true,
+          "images":{
+            "normal~":"images/打开电视/kaiguan_u6.png"}}]}},
+  "masters":{
+},
+  "objectPaths":{
+    "0f6ed6b0687d4731a93287f2377fe167":{
+      "scriptId":"u0"},
+    "0a51d8f615e84c03815d36367c3ab1b2":{
+      "scriptId":"u1"},
+    "3e7e19aa2fb343189623651be470003a":{
+      "scriptId":"u2"},
+    "0f6643e86e8745b98f194a50d62d7810":{
+      "scriptId":"u3"},
+    "4616dc0b32ff4d25b0ca8f51a68fab2e":{
+      "scriptId":"u4"},
+    "b8da943143d74e7fb7656bc36af63e06":{
+      "scriptId":"u5"},
+    "85620da3e60342b6b52bd3bb8ea8a1d7":{
+      "scriptId":"u6"},
+    "808baf21b6844101819f6e862795983f":{
+      "scriptId":"u7"}}});

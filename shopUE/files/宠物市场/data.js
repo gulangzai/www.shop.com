@@ -1,0 +1,523 @@
+﻿$axure.loadCurrentPage({
+  "url":"宠物市场.html",
+  "generationDate":new Date(1458745319120.8),
+  "isCanvasEnabled":false,
+  "variables":["content",
+"NewVariable"],
+  "page":{
+    "packageId":"875da11ff1b64d9f8ccd4827f6a8620b",
+    "type":"Axure:Page",
+    "name":"宠物市场",
+    "notes":{
+},
+    "style":{
+      "baseStyle":"627587b6038d43cca051c114ac41ad32",
+      "pageAlignment":"near",
+      "fill":{
+        "fillType":"solid",
+        "color":0xFFFFFFFF},
+      "image":null,
+      "imageHorizontalAlignment":"near",
+      "imageVerticalAlignment":"near",
+      "imageRepeat":"auto",
+      "favicon":null,
+      "sketchFactor":"0",
+      "colorStyle":"appliedColor",
+      "fontName":"应用字体",
+      "borderWidth":"0"},
+    "adaptiveStyles":{
+},
+    "interactionMap":{
+},
+    "diagram":{
+      "objects":[{
+          "id":"70b60a805e8840868159649d642e8a4a",
+          "label":"",
+          "type":"buttonShape",
+          "styleType":"buttonShape",
+          "visible":true,
+          "style":{
+            "location":{
+              "x":170,
+              "y":206},
+            "size":{
+              "width":200,
+              "height":100}},
+          "adaptiveStyles":{
+},
+          "objects":[{
+              "id":"bbd9ae273d6f4e049cb29e1b5b6a9c40",
+              "label":"",
+              "isContained":true,
+              "type":"richTextPanel",
+              "styleType":"paragraph",
+              "visible":true,
+              "style":{
+                "location":{
+                  "x":170,
+                  "y":206},
+                "size":{
+                  "width":200,
+                  "height":100}},
+              "adaptiveStyles":{
+}}],
+          "images":{
+            "normal~":"images/鸡购买页/u33.png"}},
+{
+          "id":"71a53822f13d47f9aaa651729db30448",
+          "label":"",
+          "type":"imageBox",
+          "styleType":"imageBox",
+          "visible":true,
+          "style":{
+            "location":{
+              "x":225,
+              "y":224},
+            "size":{
+              "width":75,
+              "height":65}},
+          "adaptiveStyles":{
+},
+          "objects":[{
+              "id":"fb2c98d7bff642f582eecc83873d99ab",
+              "label":"",
+              "isContained":true,
+              "type":"richTextPanel",
+              "styleType":"paragraph",
+              "visible":true,
+              "style":{
+                "location":{
+                  "x":225,
+                  "y":224},
+                "size":{
+                  "width":75,
+                  "height":65}},
+              "adaptiveStyles":{
+}}],
+          "interactionMap":{
+            "onClick":{
+              "description":"OnClick",
+              "cases":[{
+                  "description":"用例 1",
+                  "isNewIfGroup":false,
+                  "actions":[{
+                      "action":"linkWindow",
+                      "description":"在 当前窗口 打开 鸡购买页",
+                      "target":{
+                        "targetType":"page",
+                        "url":"鸡购买页.html",
+                        "includeVariables":true},
+                      "linkType":"current"}]}]}},
+          "tabbable":true,
+          "images":{
+            "normal~":"images/鸡购买页/u0.jpg"}},
+{
+          "id":"5fa0a973bb9141feb3ec494e99916031",
+          "label":"",
+          "type":"buttonShape",
+          "styleType":"buttonShape",
+          "visible":true,
+          "style":{
+            "location":{
+              "x":443,
+              "y":205},
+            "size":{
+              "width":200,
+              "height":100}},
+          "adaptiveStyles":{
+},
+          "objects":[{
+              "id":"c00833cc007b442991302948ad6c2639",
+              "label":"",
+              "isContained":true,
+              "type":"richTextPanel",
+              "styleType":"paragraph",
+              "visible":true,
+              "style":{
+                "location":{
+                  "x":443,
+                  "y":205},
+                "size":{
+                  "width":200,
+                  "height":100}},
+              "adaptiveStyles":{
+}}],
+          "images":{
+            "normal~":"images/鸡购买页/u33.png"}},
+{
+          "id":"8b492934f95a4964b18f9e8436b4e207",
+          "label":"",
+          "type":"imageBox",
+          "styleType":"imageBox",
+          "visible":true,
+          "style":{
+            "location":{
+              "x":494,
+              "y":221},
+            "size":{
+              "width":98,
+              "height":68}},
+          "adaptiveStyles":{
+},
+          "objects":[{
+              "id":"8e6d62c855fe452f99d54f49d5e44058",
+              "label":"",
+              "isContained":true,
+              "type":"richTextPanel",
+              "styleType":"paragraph",
+              "visible":true,
+              "style":{
+                "location":{
+                  "x":494,
+                  "y":221},
+                "size":{
+                  "width":98,
+                  "height":68}},
+              "adaptiveStyles":{
+}}],
+          "images":{
+            "normal~":"images/宠物市场/u6.jpg"}},
+{
+          "id":"8d012830af2c49f2ad956960eca8609d",
+          "label":"",
+          "type":"referenceDiagramObject",
+          "styleType":"referenceDiagramObject",
+          "visible":true,
+          "style":{
+},
+          "adaptiveStyles":{
+},
+          "masterId":"1134dc377d264422a0c693593837ca8f"},
+{
+          "id":"65d805f4a92c456b84860e78b36ecbc4",
+          "label":"",
+          "type":"buttonShape",
+          "styleType":"buttonShape",
+          "visible":true,
+          "style":{
+            "location":{
+              "x":290,
+              "y":115},
+            "size":{
+              "width":200,
+              "height":100}},
+          "adaptiveStyles":{
+},
+          "objects":[{
+              "id":"c41a946bf1624fd6a932314be2759e62",
+              "label":"",
+              "isContained":true,
+              "type":"richTextPanel",
+              "styleType":"paragraph",
+              "visible":true,
+              "style":{
+                "location":{
+                  "x":290,
+                  "y":115},
+                "size":{
+                  "width":200,
+                  "height":100}},
+              "adaptiveStyles":{
+}}],
+          "images":{
+            "normal~":"images/鸡购买页/u33.png"}},
+{
+          "id":"3b0fb450697b4d9190d5d8b2b2ca65a9",
+          "label":"",
+          "type":"imageBox",
+          "styleType":"imageBox",
+          "visible":true,
+          "style":{
+            "location":{
+              "x":334,
+              "y":129},
+            "size":{
+              "width":113,
+              "height":73}},
+          "adaptiveStyles":{
+},
+          "objects":[{
+              "id":"2ae03eb3f1e34948825ba55e204bbbef",
+              "label":"",
+              "isContained":true,
+              "type":"richTextPanel",
+              "styleType":"paragraph",
+              "visible":true,
+              "style":{
+                "location":{
+                  "x":334,
+                  "y":129},
+                "size":{
+                  "width":113,
+                  "height":73}},
+              "adaptiveStyles":{
+}}],
+          "images":{
+            "normal~":"images/宠物市场/u19.jpg"}}]}},
+  "masters":{
+    "1134dc377d264422a0c693593837ca8f":{
+      "packageId":"1134dc377d264422a0c693593837ca8f",
+      "type":"Axure:Master",
+      "name":"宠物市场首页",
+      "notes":{
+},
+      "style":{
+        "baseStyle":"627587b6038d43cca051c114ac41ad32",
+        "pageAlignment":"near",
+        "fill":{
+          "fillType":"solid",
+          "color":0xFFFFFFFF},
+        "image":null,
+        "imageHorizontalAlignment":"near",
+        "imageVerticalAlignment":"near",
+        "imageRepeat":"auto",
+        "favicon":null,
+        "sketchFactor":"0",
+        "colorStyle":"appliedColor",
+        "fontName":"应用字体",
+        "borderWidth":"0"},
+      "adaptiveStyles":{
+},
+      "interactionMap":{
+},
+      "diagram":{
+        "objects":[{
+            "id":"01db103b1d42496682389b8650ae1b37",
+            "label":"",
+            "type":"buttonShape",
+            "styleType":"buttonShape",
+            "visible":true,
+            "style":{
+              "horizontalAlignment":"left",
+              "location":{
+                "x":50,
+                "y":20},
+              "size":{
+                "width":498,
+                "height":30}},
+            "adaptiveStyles":{
+},
+            "objects":[{
+                "id":"3cb5f59bebd249e8b4c9f4119dc416fb",
+                "label":"",
+                "isContained":true,
+                "type":"richTextPanel",
+                "styleType":"paragraph",
+                "visible":true,
+                "style":{
+                  "horizontalAlignment":"left",
+                  "location":{
+                    "x":50,
+                    "y":20},
+                  "size":{
+                    "width":498,
+                    "height":30}},
+                "adaptiveStyles":{
+}}],
+            "images":{
+              "normal~":"images/鸡购买页/u57.png"}},
+{
+            "id":"bdafd491484041628f8584f1221fd3d9",
+            "label":"",
+            "type":"buttonShape",
+            "styleType":"h1",
+            "visible":true,
+            "style":{
+              "fontName":"'Arial Normal', 'Arial'",
+              "fontSize":"20px",
+              "fontWeight":"400",
+              "location":{
+                "x":78,
+                "y":22},
+              "size":{
+                "width":81,
+                "height":24}},
+            "adaptiveStyles":{
+},
+            "objects":[{
+                "id":"cfaebb84a40545baa1720162931e69b9",
+                "label":"",
+                "isContained":true,
+                "type":"richTextPanel",
+                "styleType":"paragraph",
+                "visible":true,
+                "style":{
+                  "fontName":"'Arial Normal', 'Arial'",
+                  "fontSize":"20px",
+                  "fontWeight":"400",
+                  "location":{
+                    "x":78,
+                    "y":22},
+                  "size":{
+                    "width":81,
+                    "height":24}},
+                "adaptiveStyles":{
+}}],
+            "interactionMap":{
+              "onClick":{
+                "description":"OnClick",
+                "cases":[{
+                    "description":"用例 1",
+                    "isNewIfGroup":false,
+                    "actions":[{
+                        "action":"linkWindow",
+                        "description":"在 当前窗口 打开 我的宠物",
+                        "target":{
+                          "targetType":"page",
+                          "url":"我的宠物.html",
+                          "includeVariables":true},
+                        "linkType":"current"}]}]}},
+            "tabbable":true,
+            "images":{
+              "normal~":"resources/images/transparent.gif"}},
+{
+            "id":"3248b4631375482dbb70b11035cf2cb4",
+            "label":"",
+            "type":"buttonShape",
+            "styleType":"h1",
+            "visible":true,
+            "style":{
+              "fontName":"'Arial Normal', 'Arial'",
+              "fontSize":"20px",
+              "fontWeight":"400",
+              "location":{
+                "x":220,
+                "y":24},
+              "size":{
+                "width":81,
+                "height":24}},
+            "adaptiveStyles":{
+},
+            "objects":[{
+                "id":"b478f32c45d0482c929424c6eaeeeee0",
+                "label":"",
+                "isContained":true,
+                "type":"richTextPanel",
+                "styleType":"paragraph",
+                "visible":true,
+                "style":{
+                  "fontName":"'Arial Normal', 'Arial'",
+                  "fontSize":"20px",
+                  "fontWeight":"400",
+                  "location":{
+                    "x":220,
+                    "y":24},
+                  "size":{
+                    "width":81,
+                    "height":24}},
+                "adaptiveStyles":{
+}}],
+            "interactionMap":{
+              "onClick":{
+                "description":"OnClick",
+                "cases":[{
+                    "description":"用例 1",
+                    "isNewIfGroup":false,
+                    "actions":[{
+                        "action":"linkWindow",
+                        "description":"在 当前窗口 打开 宠物市场",
+                        "target":{
+                          "targetType":"page",
+                          "url":"宠物市场.html",
+                          "includeVariables":true},
+                        "linkType":"current"}]}]}},
+            "tabbable":true,
+            "images":{
+              "normal~":"resources/images/transparent.gif"}},
+{
+            "id":"c06598c721d64ceeb5e1d7f3ab367c54",
+            "label":"",
+            "type":"buttonShape",
+            "styleType":"h1",
+            "visible":true,
+            "style":{
+              "fontName":"'Arial Normal', 'Arial'",
+              "fontSize":"20px",
+              "fontWeight":"400",
+              "location":{
+                "x":369,
+                "y":24},
+              "size":{
+                "width":61,
+                "height":24}},
+            "adaptiveStyles":{
+},
+            "objects":[{
+                "id":"835b30bf557741169ef7d240634b56ba",
+                "label":"",
+                "isContained":true,
+                "type":"richTextPanel",
+                "styleType":"paragraph",
+                "visible":true,
+                "style":{
+                  "fontName":"'Arial Normal', 'Arial'",
+                  "fontSize":"20px",
+                  "fontWeight":"400",
+                  "location":{
+                    "x":369,
+                    "y":24},
+                  "size":{
+                    "width":61,
+                    "height":24}},
+                "adaptiveStyles":{
+}}],
+            "interactionMap":{
+              "onClick":{
+                "description":"OnClick",
+                "cases":[{
+                    "description":"用例 1",
+                    "isNewIfGroup":false,
+                    "actions":[{
+                        "action":"linkWindow",
+                        "description":"在 当前窗口 打开 屠宰场",
+                        "target":{
+                          "targetType":"page",
+                          "url":"屠宰场.html",
+                          "includeVariables":true},
+                        "linkType":"current"}]}]}},
+            "tabbable":true,
+            "images":{
+              "normal~":"resources/images/transparent.gif"}}]}}},
+  "objectPaths":{
+    "70b60a805e8840868159649d642e8a4a":{
+      "scriptId":"u0"},
+    "bbd9ae273d6f4e049cb29e1b5b6a9c40":{
+      "scriptId":"u1"},
+    "71a53822f13d47f9aaa651729db30448":{
+      "scriptId":"u2"},
+    "fb2c98d7bff642f582eecc83873d99ab":{
+      "scriptId":"u3"},
+    "5fa0a973bb9141feb3ec494e99916031":{
+      "scriptId":"u4"},
+    "c00833cc007b442991302948ad6c2639":{
+      "scriptId":"u5"},
+    "8b492934f95a4964b18f9e8436b4e207":{
+      "scriptId":"u6"},
+    "8e6d62c855fe452f99d54f49d5e44058":{
+      "scriptId":"u7"},
+    "8d012830af2c49f2ad956960eca8609d":{
+      "scriptId":"u8",
+      "01db103b1d42496682389b8650ae1b37":{
+        "scriptId":"u9"},
+      "3cb5f59bebd249e8b4c9f4119dc416fb":{
+        "scriptId":"u10"},
+      "bdafd491484041628f8584f1221fd3d9":{
+        "scriptId":"u11"},
+      "cfaebb84a40545baa1720162931e69b9":{
+        "scriptId":"u12"},
+      "3248b4631375482dbb70b11035cf2cb4":{
+        "scriptId":"u13"},
+      "b478f32c45d0482c929424c6eaeeeee0":{
+        "scriptId":"u14"},
+      "c06598c721d64ceeb5e1d7f3ab367c54":{
+        "scriptId":"u15"},
+      "835b30bf557741169ef7d240634b56ba":{
+        "scriptId":"u16"}},
+    "65d805f4a92c456b84860e78b36ecbc4":{
+      "scriptId":"u17"},
+    "c41a946bf1624fd6a932314be2759e62":{
+      "scriptId":"u18"},
+    "3b0fb450697b4d9190d5d8b2b2ca65a9":{
+      "scriptId":"u19"},
+    "2ae03eb3f1e34948825ba55e204bbbef":{
+      "scriptId":"u20"}}});

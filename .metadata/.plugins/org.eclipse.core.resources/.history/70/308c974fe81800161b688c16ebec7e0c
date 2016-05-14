@@ -1,0 +1,5 @@
+package com.jiuji.cn.service;
+
+public interface PictureService {
+
+}

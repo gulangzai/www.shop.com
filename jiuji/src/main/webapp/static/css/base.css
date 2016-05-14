@@ -1,0 +1,91 @@
+html{
+	 margin: 0px;
+	 padding:0px;
+}
+body {
+    margin: 0 auto;
+    padding: 0px;
+    width:100%;
+    font-size: 16px;
+    font-family: "Microsoft YaHei", Arial, SansSerif;
+}
+
+.container{
+	width:100%;
+	height:100%;
+	margin:0 auto;
+}
+/* top */ 
+.top{ 
+	height:81px;
+	width:100%;
+	display:block; 
+	background-color:white; 
+	 /*  background-color:#fff;    */
+} 
+.top-content{ 
+	width:990px;
+	height:100%;
+	margin:0 auto; 
+
+} 
+.logo{
+	float:left;
+    margin-top:8px;
+}	 
+a{
+    text-decoration: none;
+    cursor: pointer;
+}
+a:hover{
+    color: #C00;
+    text-decoration: underline;
+}
+/* footer */
+.footer{
+	height:120px;
+    width:100%;  
+    display:block; 
+	/* background-color:#fff; */
+}
+.footer-content{
+	width:990px;
+	height:100%;
+	margin:0 auto;
+	/* background-color: red; */
+}
+.cooperation{ 
+	width:100%;
+	height:25px;
+	line-height:25px;
+	float:left;
+	color:red;
+	margin-top:20px;
+}
+.cooperation ul li{ 
+	float:left;
+    font-size:16px;
+    color:#000;
+    list-style-type:none;
+    padding:5px 40px 5px 40px;
+}
+.cooperation a{ 
+	color:#000;
+}
+.cooperation a:hover{ 
+	color:#f00;
+    text-decoration:underline;
+}
+.copy{ 
+    width:100%;
+    height:20px;
+    line-height:20px;
+	margin-top:30px;
+	font-family:"Arial Black", Gadget, sans-serif;
+	float:left;
+	text-align:center;
+	font-size:14px;
+}
+
+
+

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qiuji.cn.dao.TCarouselMapper" >
+
+  <resultMap id="BaseResultMap" type="com.qiuji.cn.model.TCarousel" >
+    <id column="F_Id" property="FId" jdbcType="VARCHAR" />
+    <result column="F_Url" property="FUrl" jdbcType="VARCHAR" /> 
+    <result column="F_Address" property="FAddress" jdbcType="TIMESTAMP" /> 
+  </resultMap>
+  
+  <sql id="Base_Column_List" > 
+        F_Id,F_Url,F_Address
+  </sql>
+  
+   <select id="select" resultMap="BaseResultMap" parameterType="com.qiuji.cn.model.TCarousel">
+      select 
+         <include refid="Base_Column_List" />
+      from t_carousel
+      <where>
+		<if test="FId !=null and FId != ''">  
+	     	 AND F_Id =  #{FId,jdbcType=INTEGER} 
+		</if> 
+		<if test="FUrl !=null and FUrl != ''">  
+	     	 AND F_Url =  #{FUrl,jdbcType=VARCHAR} 
+		</if> 
+		<if test="FAddress !=null and FAddress != ''">  
+	     	 AND F_Address =  #{FAddress,jdbcType=VARCHAR} 
+		</if>   
+     </where> 
+   </select>
+   
+   <select id="queryAll" resultMap="BaseResultMap">
+     select  <include refid="Base_Column_List" />  from t_carousel 
+   </select>
+   
+     <select id="selectOnlyone" resultMap="BaseResultMap" parameterType="com.qiuji.cn.model.TCarousel">
+     select 
+        <include refid="Base_Column_List" />
+     from t_carousel
+     <where>
+		<if test="FId !=null and FId != ''">  
+	     	 AND F_Id =  #{FId,jdbcType=INTEGER} 
+		</if> 
+		<if test="FUrl !=null and FUrl != ''">  
+	     	 AND F_Url =  #{FUrl,jdbcType=VARCHAR} 
+		</if> 
+		<if test="FAddress !=null and FAddress != ''">  
+	     	 AND F_Address =  #{FAddress,jdbcType=VARCHAR} 
+		</if>   
+     </where> 
+   </select>
+   
+   <insert id="insert" parameterType="com.qiuji.cn.model.TCarousel"> 
+    insert into t_carousel (F_Url,F_Address)
+     values (#{FUrl,jdbcType=VARCHAR}, #{FAddress,jdbcType=VARCHAR})  
+   </insert>
+   
+   <update id="update" parameterType="com.qiuji.cn.model.TCarousel">
+      update t_carousel set F_Url = #{FUrl,jdbcType=VARCHAR}  where F_Address = #{FAddress,jdbcType=VARCHAR}
+  </update>
+</mapper>

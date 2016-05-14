@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xue.dao.BsNoticeMapper" >
+  <resultMap id="BaseResultMap" type="com.xue.model.BsNotice" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="annunciate" property="annunciate" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="publish_user_id" property="publishUserId" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, annunciate, create_time, publish_user_id, state
+  </sql>
+  <select id="findNoticeCount" resultType="java.lang.Integer">
+	    SELECT
+			count(*)
+		FROM
+			bs_notice bn
+		INNER JOIN bs_notice_role_set bnrs ON bn.id = bnrs.notice_id
+		AND bnrs.role_id = 1
+  </select>
+  <select id="readNoPageNotice" resultMap="BaseResultMap">
+  	 	SELECT
+			bn.*
+		FROM
+			bs_user_notic_set buns
+		INNER JOIN bs_notice bn ON buns.notic_id = bn.id
+		AND buns.state =0
+		AND buns.user_id = 'teacher'
+  </select>
+  
+  <select id="readPageNotice" resultMap="BaseResultMap">
+  	 	SELECT
+			bn.*
+		FROM
+			bs_user_notic_set buns
+		INNER JOIN bs_notice bn ON buns.notic_id = bn.id
+		AND buns.state = 1
+		AND buns.user_id = 'teacher'
+  </select>
+  
+  <select id="findNotice" resultMap="BaseResultMap">
+	    SELECT
+			*
+		FROM
+			bs_notice bn
+		INNER JOIN bs_notice_role_set bnrs ON bn.id = bnrs.notice_id
+		AND bnrs.role_id = 1
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from bs_notice
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bs_notice
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xue.model.BsNotice" >
+    insert into bs_notice (id, annunciate, create_time, 
+      publish_user_id, state)
+    values (#{id,jdbcType=INTEGER}, #{annunciate,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{publishUserId,jdbcType=INTEGER}, #{state,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xue.model.BsNotice" >
+    insert into bs_notice
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="annunciate != null" >
+        annunciate,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="publishUserId != null" >
+        publish_user_id,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="annunciate != null" >
+        #{annunciate,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishUserId != null" >
+        #{publishUserId,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xue.model.BsNotice" >
+    update bs_notice
+    <set >
+      <if test="annunciate != null" >
+        annunciate = #{annunciate,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishUserId != null" >
+        publish_user_id = #{publishUserId,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xue.model.BsNotice" >
+    update bs_notice
+    set annunciate = #{annunciate,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      publish_user_id = #{publishUserId,jdbcType=INTEGER},
+      state = #{state,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

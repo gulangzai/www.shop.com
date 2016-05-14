@@ -1,0 +1,126 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<artifactId>kcit-parent</artifactId>
+		<groupId>com.kcit</groupId>
+		<version>3.1.0</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.kcit</groupId>
+	<artifactId>cpmi</artifactId>
+	<version>3.1.0</version>
+	<packaging>war</packaging>
+
+	<name>cpmi</name>
+	<url>http://maven.apache.org</url>
+
+	<repositories>
+		<repository>
+			<id>kcit-nexus</id>
+			<name>corp nexus</name>
+			<url>http://www.kcpmit.com.cn:8081/nexus/content/groups/public</url>
+		</repository>
+	</repositories>
+	<dependencies>
+
+		<dependency>
+			<groupId>com.kcit</groupId>
+			<artifactId>kcit-base</artifactId>
+			<version>4.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.kcit.plugins</groupId>
+			<artifactId>kcit-plugin-commons</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.kcit</groupId>
+			<artifactId>${kcit-auth}</artifactId>
+			<version>3.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.kcit</groupId>
+			<artifactId>kcit-fileonlineedit</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.kcit</groupId>
+			<artifactId>kcit-project-test</artifactId>
+			<version>3.1.0</version>
+			<scope>test</scope>
+		</dependency>
+<!-- 
+		<dependency>
+			<groupId>com.kcit.project</groupId>
+			<artifactId>wndsj-vo</artifactId>
+			<version>1.0</version>
+		</dependency>
+ -->
+		 <dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.6</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.3</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.github.abel533</groupId>
+			<artifactId>ECharts</artifactId>
+			<version>2.2.6</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.7</version>
+		</dependency>		
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>com.aliyun</groupId>
+		    <artifactId>aliyun-java-sdk-push</artifactId>
+		    <version>2.1.0</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.0.2</version>
+				<configuration>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
+					<encoding>${encoding.type}</encoding>
+					<compilerArguments>
+						<verbose />
+						<bootclasspath>${java.home}/lib/rt.jar;${java.home}/lib/jce.jar</bootclasspath>
+					</compilerArguments>
+				</configuration>
+			</plugin>
+		</plugins>
+		<outputDirectory>src\main\webapp\WEB-INF\classes</outputDirectory>
+		<finalName>cpmi</finalName>
+	</build>
+	<properties>
+
+		<kcit-auth>kcit-springsecurity</kcit-auth>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jdk.version>1.5</jdk.version>
+		<encoding.type>UTF-8</encoding.type>
+
+	</properties>
+</project>

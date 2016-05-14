@@ -1,0 +1,58 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+
+.hide{
+	display: none;
+}
+
+
+
+/*.pop_up h3{
+	height: 30px;
+	line-height: 30px;
+}
+
+.pop_up h3 span{
+	float: right;
+	font-size: 14px;
+	font-weight: normal;
+	cursor: pointer;
+}
+
+.pop_up span:hover{
+	color: #f00;
+}
+
+.pop_up .content{
+	height: 270px;
+	background: #fff;
+}
+*/
+.mask{
+	background: #BCBCBC;
+	opacity: 0.4;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 1;
+}
+
+
+
+.prompt_wrap{width: 480px;height: 400px;background: #55A9CD;
+border-radius: 4px;position: absolute;left: 40%;top: 38%;box-shadow: 0px 0px 20px #ccc;-webkit-box-shadow: 0px 0px 20px #ccc;-moz-box-shadow: 0px 0px 20px #ccc; z-index:3;}
+
+.title_top{ text-align:center;background-color: #63B7DC;color: #fff;position: relative;}
+.pop_content{background-color:#55A9CD; padding-left:10%; padding-right:10%;}
+.y_scroll{overflow-y:scroll;border:0px solid red; margin:auto; overflow-x:auto; height:216px;}
+.conter_bag{color:#fff;padding: 20px 0}
+.conter_bag_one{ color:#fff;}
+.title_list{list-style:none;height: 26px;}
+.tit{display:inline-block; height:42px;width:380px;padding-top: 18px;}
+.close_icon{display: inline-block;position: absolute;right: 0;top: 0; cursor:pointer;}
+input[type="checkbox"]{margin-right: 2%;vertical-align: middle;}
+.phone_no{ color:#FF0; margin-top:25%; }
+input[type="tel"]{ margin-left:1%;height: 22px;width: 240px;}
+.open_class{ padding:8px 15px; background-color:#fff;text-align:center;color: #55A9CD;font-size: 1.5em;border-radius: 5px;margin-top: 5%; cursor:pointer;position: absolute;bottom: 1%;width: 356px;}

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qiuji.cn.dao.UserMapper" >
+
+  <resultMap id="BaseResultMap" type="com.qiuji.cn.model.TUser" >
+    <id column="F_UserId" property="FUserId" jdbcType="VARCHAR" />
+    <result column="F_UserName" property="FUserName" jdbcType="VARCHAR" /> 
+    <result column="F_Email" property="FEmail" jdbcType="VARCHAR" />
+    <result column="F_Mobile" property="FMobile" jdbcType="VARCHAR" />
+    <result column="F_Password" property="FPassword" jdbcType="VARCHAR" /> 
+    <result column="F_Deleted" property="FDeleted" jdbcType="INTEGER" /> 
+  </resultMap>
+  
+  <sql id="Base_Column_List" > 
+     F_UserId,F_UserName,F_Email,F_Mobile,F_Password,F_Deleted
+  </sql>
+  
+   <select id="select" resultMap="BaseResultMap" parameterType="com.qiuji.cn.model.TUser">
+      select 
+         <include refid="Base_Column_List" />
+      from t_user
+      <where>
+		<if test="FUserName !=null and FUserName != ''">  
+	     	 AND F_UserName =  #{FUserName,jdbcType=VARCHAR} 
+		</if> 
+		<if test="FMobile !=null and FMobile != ''">  
+	     	 AND F_Mobile =  #{FMobile,jdbcType=VARCHAR} 
+		</if> 
+		<if test="FEmail !=null and FEmail != ''">  
+	     	 AND F_Email =  #{FEmail,jdbcType=VARCHAR} 
+		</if> 
+		<if test="FPassword !=null and FPassword != ''">  
+	     	  AND F_Password =  #{FPassword,jdbcType=VARCHAR}  
+		</if>   
+     </where>
+    AND F_Deleted = 0
+   </select>
+   
+     <select id="selectOnlyone" resultMap="BaseResultMap" parameterType="com.qiuji.cn.model.TUser">
+     select 
+        <include refid="Base_Column_List" />
+     from t_user
+     <where>
+	<if test="FUserName !=null and FUserName != ''">  
+     	 AND F_UserName =  #{FUserName,jdbcType=VARCHAR} 
+	</if> 
+	<if test="FMobile !=null and FMobile != ''">  
+     	 AND F_Mobile =  #{FMobile,jdbcType=VARCHAR} 
+	</if> 
+	<if test="FEmail !=null and FEmail != ''">  
+     	 AND F_Email =  #{FEmail,jdbcType=VARCHAR} 
+	</if> 
+	<if test="FPassword !=null and FPassword != ''">  
+     	  AND F_Password =  #{FPassword,jdbcType=VARCHAR}  
+	</if>   
+    </where>
+    AND F_Deleted = 0
+   </select>
+   
+   <insert id="insert" parameterType="com.qiuji.cn.model.TUser"> 
+    insert into t_user (F_UserId, F_UserName, F_Mobile,F_Email, 
+      F_Password, F_Deleted
+      )
+     values (#{FUserId,jdbcType=VARCHAR}, #{FUserName,jdbcType=VARCHAR}, #{FMobile,jdbcType=VARCHAR},
+      #{FEmail,jdbcType=VARCHAR}, 
+      #{FPassword,jdbcType=VARCHAR}, #{FDeleted,jdbcType=INTEGER}
+      ) 
+      <!--  insert into t_user
+       <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="FUserId != null" >
+         F_UserId,
+      </if>
+      <if test="FUserName != null" >
+        F_UserName,
+      </if>
+      <if test="FEmail != null" >
+        F_Email,
+      </if>
+      <if test="FPassword != null" >
+        F_Password,
+      </if>
+      <if test="FDeleted != null" >
+        F_Deleted,
+      </if>
+       </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="FUserId != null" >
+        #{FUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="FUserName != null" >
+        #{FUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="FEmail != null" >
+        #{FEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="FPassword != null" >
+        #{FPassword,jdbcType=VARCHAR},
+      </if>  
+      <if test="FDeleted != null" >
+        #{FDeleted,jdbcType=INTEGER},
+      </if>
+    </trim> -->
+   </insert>
+</mapper>

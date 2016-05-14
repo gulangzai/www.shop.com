@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html>
+<html manifest="LmvDbg.manifest">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>WebGL Viewer 2</title>
+    
+        <!-- bootstrap and jQuery -->
+    <link href="./stylesheets/libs/bootstrap.min.css" rel="stylesheet">
+    <script src="./scripts/libs/jquery/jquery-2.1.1.min.js"></script>   <!-- get it local so it works in China! -->
+    <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
+    
+        <!-- jscolor color picker library -->
+    <script src="./scripts/libs/jscolor/jscolor.js"></script>
+    
+        <!-- jsTree library -->
+    <link rel="stylesheet" href="./scripts/libs/jstree/dist/themes/default/style.min.css" />
+    <script src="./scripts/libs/jstree/dist/jstree.min.js"></script>
+    
+        <!-- prism syntax higlighting library -->
+    <link href="./scripts/libs/prism/prism.css" rel="stylesheet" />
+    <script src="./scripts/libs/prism/prism.min.js"></script>
+    
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <script src="viewer3D.min.js"></script>
+
+        <!-- This apps includes -->
+    <link href="./stylesheets/theme.css" rel="stylesheet">
+    <!-- <script src="./scripts/MyAuthToken.js"></script> -->
+    <!-- <script src="./scripts/DebugUtils.js"></script> -->
+ 
+    <script>
+                
+        $(document).ready(function() {
+            
+        });
+        
+            // prism syntax highlighter needs html escaped with ampersand chars
+        function escapeHTML(s) { 
+            return s.replace(/&/g, '&amp;')
+                    .replace(/"/g, '&quot;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;');
+        }
+        
+		function getParameterByName(name) {   
+         name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");   
+         var regexS = "[\\?&]" + name + "=([^&#]*)";    
+         var regex = new RegExp(regexS);   
+         var results = regex.exec(window.location.search);     
+         if (results == null)       
+              return null;    
+         else        
+             return decodeURIComponent(results[1].replace(/\+/g, " "));  
+         } 
+
+		 function onload() {
+		 	$("#viewer").css("height",window.innerHeight-105);
+			$("#viewer").css("width",window.innerWidth-240 );
+            var fileid = getParameterByName("id");
+            if (fileid == null || fileid == "")
+            {
+                alert("未接收到模型ID！");
+                return;
+            }
+
+            openmodel(fileid);
+
+        }
+
+        function openmodel(fileid)
+        {
+            var dataurl = "../data/" + fileid + "/data.html";
+            var datamanifesturl = "../data/"+fileid+"/data.manifest";
+			var path = null;
+			var dbpath = null;
+            $.get(dataurl, function(test){
+                var dataframe = document.getElementById("data");
+                dataframe.src = dataurl;
+                $.get(datamanifesturl, function(data) {
+                    var index1 = data.indexOf(".svf");
+                    if (index1 > 0)
+                    {
+                        var subdata = data.substr(0, index1+4);
+                        var index2 = subdata.lastIndexOf("\n");
+                        if (index2 > 0)
+                        {
+                            var indexpath = subdata.substr(index2+1);
+                            if (indexpath == null || indexpath == "")
+                            {
+                                alert("未能找到模型文件！");
+                                return;
+                            }
+
+                            if(indexpath) {
+                                indexpath = "../data/" + fileid + "/" + indexpath;
+								path = indexpath;
+                            }
+                        }
+                        else
+                        {
+                            alert("未能找到模型文件！");
+                            return;
+                        }
+
+                    }
+                    else
+                    {
+                        alert("未能找到模型文件！");
+                        return;
+                    }
+                    var index3 = data.indexOf(".sdb");
+                    if (index3 > 0)
+                    {
+                        var subdata = data.substr(0, index3+4);
+                        var index4 = subdata.lastIndexOf("\n");
+                        if (index4 > 0)
+                        {
+                            var indexpath = subdata.substr(index4+1);
+                            if (indexpath == null || indexpath == "")
+                            {
+                                alert("未能找到db文件！");
+                                return;
+                            }
+
+                            if(indexpath) {
+								var index5 = indexpath.lastIndexOf("/");
+								if (index5 > 0)
+								{
+									indexpath = indexpath.substr(0, index5+1);
+								}
+								else
+								{
+									indexpath = "";
+								}
+                                indexpath = "../data/" + fileid + "/" + indexpath;
+								dbpath = indexpath;
+                            }
+                        }
+                        else
+                        {
+                            alert("未能找到db文件！");
+                            return;
+                        }
+
+                    }
+                    else
+                    {
+                        alert("未能找到db文件！");
+                        return;
+                    }
+
+					if (path && dbpath)
+					{
+						//loadView("./sample/output/Resource/3D_View/3D_Architectural/3D_Architectural.svf", "./sample/output/Resource");
+						//loadView("./data_xkyy/output/Resource/____/_3D_/_3D_.svf", "./data_xkyy/output/Resource/____/_3D_");
+						loadInitialModel(path, dbpath);
+					}
+				});
+            });
+
+        }
+
+		</script>
+</head>
+ 
+<body onload="onload();" style="margin:0" oncontextmenu="return false;">  <!-- NOTE: setting oncontextmenu=false allows the viewer context menu to work (for things like "Hide Selected") -->
+
+          <!-- Viewer and API function selection -->
+
+            <div  id="viewer">          <!-- Viewer goes here -->        
+                <!-- Upon the viewer initalizaiton, it will append a div to the above div to insert the viewer.  It
+                    will use 100% width and height so that it will fill up whatever the above div's dimensions are. 
+                    NOTE: I had to set height in theme.css for this object or bootstrap would set height to 1px -->
+                <div id="lmvdbg_toolbar_canvas_div" style="position: relative; top: 10px; left: 0px; z-index: 200;"></div>
+                    <!-- the Toolbars test function will position the in-canvas toolbar using this div.  See partials/toolbars.html -->
+            </div>
+    
+	<div style="display:none">
+		<iframe id="data" src=""></iframe>
+	</div>
+    
+    <br/>
+    
+    <script src="./scripts/LoadModel.js"></script>
+
+</body>
+ 
+</html>

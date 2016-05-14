@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BaseConfig>
+	<JS>
+		<JSName>assets/sys_resources/js/common/Form2Json.js</JSName>
+		<JSName>assets/sys_resources/js/common/convertJson.js</JSName>
+		<JSName>assets/sys_resources/js/common/combineQuery.js</JSName>
+		<JSName>assets/sys_resources/js/common/default.js?version=20131206</JSName>
+		<JSName>assets/sys_resources/js/common/bootstrap-validation.js</JSName>
+		<JSName>assets/sys_resources/js/common/loadFields.js?version=20131206</JSName>
+		<JSName>assets/sys_resources/plugins/validform/js/Validform_v5.3.2_min.js</JSName>
+		
+
+	</JS>
+</BaseConfig>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qiuji.cn.dao.TProductMapper" >
+
+  <resultMap id="BaseResultMap" type="com.qiuji.cn.model.TProduct" >
+    <id column="F_ProductId" property="FProductId" jdbcType="VARCHAR" />
+    <result column="F_ProductName" property="FProductName" jdbcType="VARCHAR" /> 
+    <result column="F_ProductPic" property="FProductPic" jdbcType="INTEGER" /> 
+    <result column="F_ProductDesc" property="FProductDesc" jdbcType="INTEGER" /> 
+    <result column="F_Price" property="FPrice" jdbcType="INTEGER" /> 
+    <result column="F_ClsId" property="FClsId" jdbcType="VARCHAR" /> 
+    <result column="F_ProductTime" property="FProductTime" jdbcType="TIMESTAMP" /> 
+    <result column="F_Status" property="FStatus" jdbcType="INTEGER" /> 
+    <result column="F_IsSpecial" property="FIsSpecial" jdbcType="INTEGER" /> 
+    <result column="F_Degree" property="FDegree" jdbcType="INTEGER" /> 
+  </resultMap>
+  
+  <sql id="Base_Column_List" > 
+        F_ProductId,F_ProductName,F_ProductPic,F_ProductDesc,F_Price,F_ClsId,F_ProductTime,F_Status,
+        F_IsSpecial,F_Degree
+  </sql>
+  
+   <select id="select" resultMap="BaseResultMap" parameterType="com.qiuji.cn.model.TProduct">
+      select 
+         <include refid="Base_Column_List" />
+      from t_product
+      <where>
+		<if test="FProductId !=null and FProductId != ''">  
+	     	 AND F_ProductId =  #{FProductId,jdbcType=VARCHAR} 
+		</if> 
+		<if test="FProductName !=null and FProductName != ''">  
+	     	 AND F_ProductName =  #{FProductName,jdbcType=VARCHAR} 
+		</if> 
+		<if test="FProductPic !=null and FProductPic != ''">  
+	     	 AND F_ProductPic =  #{FProductPic,jdbcType=VARCHAR} 
+		</if>   
+		<if test="FProductDesc !=null and FProductDesc != ''">  
+	     	 AND F_ProductDesc =  #{FProductDesc,jdbcType=VARCHAR} 
+		</if>  
+		<if test="FPrice !=null and FPrice != ''">  
+	     	 AND F_Price =  #{FPrice,jdbcType=INTEGER} 
+		</if>  
+     </where> 
+   </select>
+   
+   <select id="queryById" resultMap="BaseResultMap" parameterType="com.qiuji.cn.model.TProduct">
+      select 
+         <include refid="Base_Column_List" />  from t_product where F_ProductId=#{FProductId,jdbcType=VARCHAR}
+   </select>
+   
+   
+   
+   <select id="findNewGood" resultMap="BaseResultMap" parameterType="com.qiuji.cn.model.TProduct">
+      select 
+         <include refid="Base_Column_List" />
+      from t_product  where F_Status = 0  order by F_ProductTime desc  limit 0,3 
+   </select>
+   
+   <select id="findNewHot" resultMap="BaseResultMap" parameterType="com.qiuji.cn.model.TProduct">
+      select 
+         <include refid="Base_Column_List" />
+      from t_product  where F_Status = 0  order by F_Degree desc  limit 0,3 
+   </select>
+   
+    <select id="findNewSpecial" resultMap="BaseResultMap" parameterType="com.qiuji.cn.model.TProduct">
+      select 
+         <include refid="Base_Column_List" />
+      from t_product  where F_Status = 0 and F_IsSpecial=1  order by F_Degree desc  limit 0,3 
+   </select>
+   
+   <select id="queryAll" resultMap="BaseResultMap">
+        select  <include refid="Base_Column_List" />  from t_class 
+   </select>
+   
+     <select id="selectOnlyone" resultMap="BaseResultMap" parameterType="com.qiuji.cn.model.TCarousel">
+     select 
+        <include refid="Base_Column_List" />
+     from t_carousel
+     <where>
+		<if test="FId !=null and FId != ''">  
+	     	 AND F_Id =  #{FId,jdbcType=INTEGER} 
+		</if> 
+		<if test="FUrl !=null and FUrl != ''">  
+	     	 AND F_Url =  #{FUrl,jdbcType=VARCHAR} 
+		</if> 
+		<if test="FAddress !=null and FAddress != ''">  
+	     	 AND F_Address =  #{FAddress,jdbcType=VARCHAR} 
+		</if>   
+     </where> 
+   </select>
+   
+   <insert id="insert" parameterType="com.qiuji.cn.model.TCarousel"> 
+    insert into t_carousel (F_Url,F_Address)
+     values (#{FUrl,jdbcType=VARCHAR}, #{FAddress,jdbcType=VARCHAR})  
+   </insert>
+   
+   <update id="update" parameterType="com.qiuji.cn.model.TCarousel">
+      update t_carousel set F_Url = #{FUrl,jdbcType=VARCHAR}  where F_Address = #{FAddress,jdbcType=VARCHAR}
+  </update>
+</mapper>

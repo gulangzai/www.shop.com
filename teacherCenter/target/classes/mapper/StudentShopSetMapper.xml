@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xue.dao.StudentShopSetMapper" >
+  <resultMap id="BaseResultMap" type="com.xue.model.StudentShopSet" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="STUDENT_ID" property="studentId" jdbcType="VARCHAR" />
+    <result column="SHOP_ID" property="shopId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, STUDENT_ID, SHOP_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from student_shop_set
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="queryStudentShopSetList" resultMap="BaseResultMap" parameterType="com.xue.model.StudentShopSet">
+       select 
+    <include refid="Base_Column_List" />
+    from student_shop_set
+    where student_Id = #{studentId,jdbcType=VARCHAR} and shop_id = #{shopId,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from student_shop_set
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xue.model.StudentShopSet" >
+    insert into student_shop_set (STUDENT_ID, SHOP_ID
+      )
+    values (#{studentId,jdbcType=VARCHAR}, #{shopId,jdbcType=VARCHAR}
+      )
+      <selectKey resultType="java.lang.Integer" order="AFTER"
+			keyProperty="ID">
+			select last_insert_id()
+	  </selectKey>
+  </insert>
+  <insert id="insertSelective" parameterType="com.xue.model.StudentShopSet" >
+    insert into student_shop_set
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="studentId != null" >
+        STUDENT_ID,
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="studentId != null" >
+        #{studentId,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xue.model.StudentShopSet" >
+    update student_shop_set
+    <set >
+      <if test="studentId != null" >
+        STUDENT_ID = #{studentId,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID = #{shopId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xue.model.StudentShopSet" >
+    update student_shop_set
+    set STUDENT_ID = #{studentId,jdbcType=VARCHAR},
+      SHOP_ID = #{shopId,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

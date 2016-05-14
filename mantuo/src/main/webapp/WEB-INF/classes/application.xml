@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+<config_file/>
+<webAppRootKey>cpmi.root</webAppRootKey>
+<DEV_FLAG>false</DEV_FLAG>
+
+<DATA_SYNC_SGENTERPRISE>false</DATA_SYNC_SGENTERPRISE>
+<DATA_SYNC_SGBB>false</DATA_SYNC_SGBB>
+<DATA_SGRY_PERSON>false</DATA_SGRY_PERSON>
+
+<MSG_DWR_FLAG>true</MSG_DWR_FLAG>
+<MEMCACHE_SERVER_CREATE_FLAG>false</MEMCACHE_SERVER_CREATE_FLAG>
+
+<default_pwd>111111</default_pwd>
+
+<resourcePath>/jsp/</resourcePath>
+<resource_corl>db</resource_corl>
+
+<PATH_TEMPLATE_WORD>D:\java\config_folder\wndjs-vo\src\main\resources\template\word\</PATH_TEMPLATE_WORD>
+<PATH_TEMPLATE_XML>D:\java\config_folder\wndjs-vo\src\main\resources\template\xml\</PATH_TEMPLATE_XML>
+<!--<PATH_TEMPLATE_WORD>E:\\WorkDir\\Project\\kzcpmit\\wndjs\\trunk\\2Code\\trunk\\wndjs-vo\\src\\main\\resources\\template\\word</PATH_TEMPLATE_WORD> -->
+<FILEPATH_DOWNLOAD>D:\\</FILEPATH_DOWNLOAD>
+
+<WNDJSWX_MENU>cpmi.root</WNDJSWX_MENU>
+
+<FILEUPLOADOLD_ROOT>FILEUPLOADOLD_ROOT</FILEUPLOADOLD_ROOT>
+
+<BROWSER_ERROR>
+<![CDATA[
+当前浏览器版本会影响功能使用,请使用推荐的浏览器使用本系统!
+]]>
+</BROWSER_ERROR>
+
+<BROWSER_ALTER><![CDATA[
+<div style="color: yellow;text-align: right;">本系统推茬使用 360安全浏览器[极速模式]、IE10及以上[非兼容模式]、Chrome、搜狗</div>
+]]></BROWSER_ALTER>
+
+
+</configuration>
