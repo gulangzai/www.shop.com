@@ -5,8 +5,7 @@ import java.io.Reader;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
-
+import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport; 
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;

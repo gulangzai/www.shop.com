@@ -18,7 +18,7 @@ public class TestIbatis {
 			try {
 				reader = Resources.getResourceAsReader("cn/lanbao/com/jopo/sqlMapConfig.xml");
 				SqlMapClient smc = SqlMapClientBuilder.buildSqlMapClient(reader);
-				students = smc.queryForList("TTArea.selectAllStudents"); 
+				students = smc.queryForList("TTArea.selectAllStudents",null); 
 				for(Student student: students)
 				    System.out.println(student.getName());
 				

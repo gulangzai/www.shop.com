@@ -24,7 +24,8 @@ import cn.lanbao.com.common.ResultAction;
 import cn.lanbao.com.common.ResultGrid;
 import cn.lanbao.com.jopo.BaseJopo;
 import cn.lanbao.com.jopo.User;
-import cn.lanbao.com.service.UserService;
+import cn.lanbao.com.service.MyStudentService;
+import cn.lanbao.com.service.MyUserService; 
 import cn.lanbao.com.util.CommonUtil;
 import cn.lanbao.com.util.Json;
 import cn.lanbao.com.util.TranscodUtil;
@@ -34,7 +35,7 @@ import cn.lanbao.com.util.TranscodUtil;
 public class MyUserController extends BaseController{
 
 	@Autowired(required=true)
-	private UserService userService;
+	private MyUserService userService;
  
   
 	public ModelAndView save(HttpServletRequest req,

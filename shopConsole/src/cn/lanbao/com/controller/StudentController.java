@@ -5,23 +5,22 @@ import java.util.List;
 import org.springframework.web.servlet.ModelAndView;
 
 import cn.lanbao.com.jopo.Student;
-import cn.lanbao.com.service.StudentService;
+import cn.lanbao.com.service.MyStudentService;
 
 public class StudentController  {
 	
-	private StudentService studentService;
-	
-	
-	public StudentService getStudentService() {
-		return studentService;
+	private MyStudentService myStudentService;
+	 
+	public MyStudentService getMyStudentService() {
+		return myStudentService;
 	}
-
-	public void setStudentService(StudentService studentService) {
-		this.studentService = studentService;
+ 
+	public void setMyStudentService(MyStudentService myStudentService) {
+		this.myStudentService = myStudentService;
 	}
-
+ 
 	public ModelAndView save(Student student){
-		studentService.save(student);
+		myStudentService.save(student);
 		ModelAndView modelAndView = new ModelAndView("success");
 		return modelAndView;
 	}
