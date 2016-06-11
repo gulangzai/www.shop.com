@@ -10,16 +10,19 @@
  <link rel="shortcut icon" href="image/ico.png" />
   <meta name="description" content="啾唧网 方便快捷，物美价廉，更快送达，诚信服务" />
   <meta name="keywords" content="啾唧商品页" />
-<title>啾唧-商品页</title>
-
-<link rel="stylesheet" href="${ctxStatic}/css/base.css" type="text/css" /> 
-<link rel="stylesheet" href="${ctxStatic}/css/top.css" type="text/css" /> 
-<link rel="stylesheet" href="${ctxStatic}/css/goods.css" type="text/css" />
+<title>啾唧-商品页</title> 
+<link rel="stylesheet" href="${ctxStatic}/css/base.css" type="text/css" />  
 <link rel="stylesheet" href="${ctxStatic}/css/homepage/base.css" type="text/css" />
+<link rel="stylesheet" href="${ctxStatic}/css/goods.css" type="text/css" /> 
 <link rel="stylesheet" href="${ctxStatic}/css/head.css" type="text/css" />
-<script src="${ctxStatic}/js/jquery_1.8.3.min.js" type="text/javascript"></script>  
+
+
+<script src="${ctxStatic}/js/jquery-1.11.3.min.js" type="text/javascript"></script>  
+<script src="${ctxStatic}/js/browser.js" type="text/javascript"></script>
 <script type="text/javascript" src="${ctxStatic}/js/responsive.tabs.js"></script>
-<script src="${ctxStatic}/js/head.js" type="text/javascript"></script>
+ 
+<script src="${ctx}/assets/js/bootstrap.min.js" type="text/javascript"></script> 
+ 
 <script type="text/javascript">
 var ctx ='${ctx}';
 $(document).ready(function(){ 
@@ -28,19 +31,33 @@ $(document).ready(function(){
 	});
 	
 });
-     $(function(){
-         //通用头部搜索切换
-         $('#search-hd .search-input').on('input propertychange',function(){
-             var val = $(this).val();
-             if(val.length > 0){
-                 $('#search-hd .pholder').hide(0);
-             }else{
-                 var index = $('#search-bd li.selected').index();
-                 $('#search-hd .pholder').eq(index).show().siblings('.pholder').hide(0);
-             }
-         })  
-     }) 
-    </script>
+$(function() {
+	//通用头部搜索切换
+	$('#search-hd .search-input').on(
+			'input propertychange',
+			function() {
+				var val = $(this).val();
+				if (val.length > 0) {
+					$('#search-hd .pholder').hide(0);
+				} else {
+					var index = $('#search-bd li.selected').index();
+					$('#search-hd .pholder').eq(index).show().siblings(
+							'.pholder').hide(0);
+				}
+			})
+	$('#search-bd li').click(
+			function() {
+				var index = $(this).index();
+				$('#search-hd .pholder').eq(index).show().siblings(
+						'.pholder').hide(0);
+				$('#search-hd .search-input').eq(index).show().siblings(
+						'.search-input').hide(0);
+				$(this).addClass('selected').siblings().removeClass(
+						'selected');
+				$('#search-hd .search-input').val('');
+			});
+})
+</script>
 </head>
 <body>
 	<div class="top">
@@ -54,19 +71,20 @@ $(document).ready(function(){
 			</div>
 			<div class="personal">
 				<ul>
-					<li><a href="#">个人中心</a></li>
-					<li><a href="#">收藏夹</a></li>
-					<li><a href="#">购物车</a></li>
-					<li><a href="#">网站导航</a></li>
+					<li><a href="javascript:alert('功能暂未开放')">个人中心</a></li>
+					<li><a href="javascript:alert('功能暂未开放')">收藏夹</a></li>
+					<li><a href="javascript:alert('功能暂未开放')">购物车</a></li>
+					<li><a href="javascript:alert('功能暂未开放')">网站导航</a></li>
 				</ul>
 			</div>
 		</div>
 	</div> 
 
-  <div class="search">
+   <div class="search">
 		<div class="search-con">
 			<div class="logo">
-               <a href="${ctx}/homePageCtrl/toHomePage.do"><img src="${ctxStatic}/images/homepage/logo2.png" width="145" alt="" /></a>			</div>
+				<a href="${ctx}/homePageCtrl/toHomePage.do"><img src="${ctxStatic}/images/homepage/logo2.png" width="145" alt="" /></a>
+			</div>
 			<div class="search-form">
 				<div id="search-bd" class="search-bd">
 					<ul>
@@ -74,12 +92,11 @@ $(document).ready(function(){
 						<li>找商家</li>
 					</ul>
 				</div>
-				<div id="search-hd" class="search-hd">
+				<div id="search-hd" class="search-hd" style="height:40px;padding:10px 0px;">
 					<div class="search-bg"></div>
 					<input type="text" id="autocomplete-ajax" class="search-input"> 
-					<input type="text" id="s2" class="search-input"> 
-					<span class="s1 pholder">生鲜水果半价抢疯</span> 
-						<span class="s2 pholder" style="display:none">搜商家名称</span>
+					<input type="text" id="s2" class="search-input"> <span
+						class="s1 pholder">生鲜水果半价抢疯</span> <span class="s2 pholder">搜商家名称</span>
 					<button id="submit" class="btn-search" value="搜索">搜索</button>
 				</div> 
 				 <div id="selction-ajax"></div> 
@@ -121,12 +138,12 @@ $(document).ready(function(){
 
 				<div class="navCon-menu fl"> 
 					<ul> 
-						<li><a class="curMenu" href="#">首页</a></li>
-                        <li><a href="#">团购场</a></li> 
-						<li><a href="#">自营超市</a></li> 
-						<li><a href="#">名家鉴赏</a></li> 
-						<li><a href="#">闪购</a></li> 
-						<li><a href="#">VIP专场</a></li> 
+						<li><a class="curMenu" href="${ctx}/homePageCtrl/toHomePage.do">首页</a></li>
+                        <li><a href="javascript:alert('功能暂未开放')">团购场</a></li> 
+						<li><a href="javascript:alert('功能暂未开放')">自营超市</a></li> 
+						<li><a href="javascript:alert('功能暂未开放')">名家鉴赏</a></li> 
+						<li><a href="javascript:alert('功能暂未开放')">闪购</a></li> 
+						<li><a href="javascript:alert('功能暂未开放')">VIP专场</a></li> 
 					</ul>  
 			</div>  
 		</div>
@@ -160,40 +177,40 @@ $(document).ready(function(){
 		</div>
 
 		<div class="preview-right">
+		    <span class="productId" style="display:none">${singleProduct.FProductId}</span>
 			<h1 class="goods-title">
-				<span itemprop="name">${singleProduct.FProductName}</span>
+				<span itemprop="name" class="productName">${singleProduct.FProductName}</span>
 			</h1>
-			<div class=" goods-main">
+			<div class="goods-main">
 				<div class="main-box">
 					<div class="property-box">
-						<span class="property-type">价格：</span> <span class="origin-price">¥22</span>
-					</div>
-
-					<div class="property-box">
-						<span class="property-type" style="font-size:16px;"> 本站价 ：</span> <span class="now-price">¥${singleProduct.FPrice}</span>
-					</div>
+						<span class="property-type">价格：</span> <span class="origin-price">¥${singleProduct.FPrice}</span>
+					</div> 
 				</div>
-				<div class="property-extra">
-					<span class="mr">评价： <span class="num"> 9 </span>
-					</span> <span class="mr">累计销量： <span class="num SaleNum"> 84
-					</span>
-					</span>
+				 
+					
+				<div class="property-extra" >  
+				 
+				   <c:forEach var="tbStandard" items="${tbStandards}">
+					   	&nbsp; 
+                       <div style="margin:5px 0;padding:5px;display:block;font-size:16px;color:#A5A5A5">${tbStandard.f_standardName}:<span>&nbsp${tbStandard.f_standardValue}</span></div>
+                    </c:forEach>  
+                    
 				</div>
 			</div>
-			&nbsp; 
-            <div style="margin:5px 0;padding:5px;display:block;font-size:16px;">运费:<span>&nbsp免费</span></div>
-            
-			<div class="" style="margin:5px 0;padding:5px;border-top:solid red 1px;border-bottom:solid red 1px;font-size:16px;">数量:<span>&nbsp100</span></div>
-			&nbsp; &nbsp; 
+		
+			 
+			 
+			 
 			 
 			<!-- <div class="">地址</div> -->
 			<div class="buy">
 				<div class="buy-btn">
-					<a href="#">立即购买</a>
+					<a  id="submitRecordInfo" data-toggle="modal" data-target="#recordContact">提交订单信息</a>
 				</div>
-				<div class="shop">
+				<!-- <div class="shop">
 					<a href="#">加入购物车</a>
-				</div>
+				   </div> -->
 			</div>
 		</div>
 
@@ -201,7 +218,7 @@ $(document).ready(function(){
 		<div class="tabs">
 			<ul class="tabs-list">
 				<li class="active"><a href="javascript:;">产品详情</a></li>
-			    <li><a href="javascript:;">累计评价</a></li> 
+	   	 <!--  <li><a href="javascript:;">累计评价</a></li>  -->  
 			</ul>
 			<div class="tabs-container">
 				<div class="tab-content">
@@ -224,20 +241,50 @@ $(document).ready(function(){
 		<div class="footer-content">
 			<div class="cooperation">
 				<ul>
-					<li><a href="#">商家入驻</a></li>
-					<li><a href="#">销售联盟</a></li>
-					<li><a href="#">关于我们</a></li>
-					<li><a href="#">商品专题</a></li>
-					<li><a href="#">热门搜索</a></li>
-					<li><a href="#">服务热线</a></li>
+					<li><a href="javascript:alert('功能暂未开放')">商家入驻</a></li>
+					<li><a href="javascript:alert('功能暂未开放')">销售联盟</a></li>
+					<li><a href="javascript:alert('功能暂未开放')">关于我们</a></li>
+					<li><a href="javascript:alert('功能暂未开放')">商品专题</a></li>
+					<li><a href="javascript:alert('功能暂未开放')">热门搜索</a></li>
+					<li><a href="javascript:alert('功能暂未开放')">服务热线</a></li>
 				</ul>
 			</div>
 			<div class="copy">&copy;2000-2016&nbsp;&nbsp;啾唧在线电子商务有限公司&nbsp;&nbsp;&nbsp;版权所有 皖ICP备16007801号</div>
 		</div>
 	</div>
-	<script src="${ctxStatic}/js/header.js" type="text/javascript"></script>
+	
+	
+<!-- ---------------- -->
+<div id="recordContact" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ 
+</div><!-- /.modal -->  
+ 
+
+<script src="${ctxStatic}/js/header.js" type="text/javascript"></script>  
+
+<!-- ---------------------------ace -----> 
+<link rel="stylesheet" href="${ctx}/assets/css/bootstrap.css" type="text/css" />  
+
+
 <!--preview end-->
 <script type="text/javascript">
+
+(function(){
+	//提交订单信息
+	$("#submitRecordInfo").click(function(){
+		//$('#newAdd').attr("data-target","xmgk-input");
+		//$("#submitRecordInfo").attr("href","#recordContact");  
+		var productName = $(".productName").text();
+		var productId = $(".productId").text();
+		$("#recordContact").empty(); 
+		$.get("${ctx}/homePageCtrl/toRecordContact.do?productName="+productName+"&productId="+productId,function(data) {
+			$("#recordContact").empty();
+			$("#recordContact").html("");
+			$("#recordContact").html(data);
+		}); 
+	});
+	
+})();
 $(document).ready(function(){
 	// 图片上下滚动
 	var count = $("#imageMenu li").length - 4; /* 显示 5 个 li标签内容 */

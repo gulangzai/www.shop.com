@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jiuji.cn.business.spcontact.dao.SpContactMapper" >
+
+  <resultMap id="BaseResultMap" type="com.jiuji.cn.business.spcontact.model.SpContact" >
+    <id column="CONTACT_UID" property="contact_uid" jdbcType="INTEGER" />
+    <result column="CONTACT_NAME" property="contact_name" jdbcType="VARCHAR" /> 
+    <result column="CONTACT_TELE" property="contact_tele" jdbcType="VARCHAR" /> 
+    <result column="CONTACT_ADDRESS" property="contact_address" jdbcType="VARCHAR" /> 
+    <result column="F_ProductId" property="f_productId" jdbcType="INTEGER" />  
+  </resultMap>
+  
+  <sql id="Base_Column_List" > 
+        F_ProductId,F_ProductName,F_ProductPic,F_ProductDesc,F_Price,F_ClsId,F_ProductTime,F_Status,
+        F_IsSpecial,F_Degree
+  </sql>
+  
+ 
+   
+   <insert id="insert" parameterType="com.jiuji.cn.business.spcontact.model.SpContact"> 
+    insert into sp_contact (CONTACT_NAME,CONTACT_TELE,CONTACT_ADDRESS,F_ProductId)
+       values (#{contact_name,jdbcType=VARCHAR}, #{contact_tele,jdbcType=VARCHAR},#{contact_address,jdbcType=VARCHAR},#{f_productId,jdbcType=INTEGER})  
+   </insert>
+   
+  
+</mapper>

@@ -46,6 +46,7 @@ public class CommonInterceptor extends HandlerInterceptorAdapter{
         log.info("==============执行顺序: 1、preHandle================");    
         response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=utf-8"); 
+		request.setCharacterEncoding("UTF-8");
         String requestUri = request.getRequestURI();  
         String contextPath = request.getContextPath();  
         String url = requestUri.substring(contextPath.length());  

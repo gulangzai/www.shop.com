@@ -182,6 +182,33 @@ public class GoodClassController extends BaseController {
 		return mv; 
 	}
 	
+	/**
+	 * 列表
+	 */
+	@RequestMapping(value="/classTree")
+	public ModelAndView classTree(Page page,Model model){
+		ModelAndView mv = this.getModelAndView();
+		PageData pd = new PageData();
+		pd = this.getPageData();
+		pd.put("id",null);
+		page.setPd(pd);
+		List<PageData> varList;
+		List<PageData> classList;
+		try {  
+			varList = classService.listAll(pd); 
+			JSONArray classes = JSONArray.fromObject(varList);
+			mv.setViewName("information/goodClass/class_tree");
+			mv.addObject("classes", classes.toString());
+			mv.addObject("pd", pd); 
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	//列出Pictures列表
+ 
+		return mv; 
+	}
+	
+	
 	@RequestMapping(value="/listClass")
 	public ModelAndView listClass(Page page,Model model){
 		ModelAndView mv = this.getModelAndView();

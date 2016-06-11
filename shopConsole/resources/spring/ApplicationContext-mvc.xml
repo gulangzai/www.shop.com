@@ -12,6 +12,7 @@
 	
 	<context:component-scan base-package="com.fh.controller" /> 
 	<context:component-scan base-package="cn.lanbao.com.controller" /> 
+	<context:component-scan base-package="cn.lanbao.com.business" /> 
 	<context:component-scan base-package="com.json" />
 
 	<!-- 对静态资源文件的访问  restful-->     

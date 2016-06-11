@@ -4,7 +4,8 @@ import java.util.List;
 
 import com.jiuji.cn.model.TCarousel;
 import com.jiuji.cn.model.TClass;
-import com.jiuji.cn.model.TProduct; 
+import com.jiuji.cn.model.TProduct;
+import com.jiuji.cn.model.TProductDto; 
 
 public interface TProductMapper {
 	
@@ -22,7 +23,7 @@ public interface TProductMapper {
 	 * 获得最新的商品
 	 * @return 
 	 */
-	List<TProduct> findNewGood();
+	List<TProductDto> findNewGood();
 	/**
 	 * 获得热门的商品
 	 * @return 

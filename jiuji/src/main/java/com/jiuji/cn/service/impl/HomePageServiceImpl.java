@@ -12,6 +12,7 @@ import com.jiuji.cn.dao.TProductMapper;
 import com.jiuji.cn.model.TCarousel;
 import com.jiuji.cn.model.TClass;
 import com.jiuji.cn.model.TProduct;
+import com.jiuji.cn.model.TProductDto;
 import com.jiuji.cn.service.HomePageService;
 
 import java.util.List;
@@ -41,12 +42,15 @@ public class HomePageServiceImpl implements HomePageService {
 		//相关类目
 		model.addAttribute("tclasses",tclasses);
 		session.setAttribute("tclasses", tclasses);
+		
+		
 		//获取最新发布的5个商品
-		List<TProduct> tproducts = tproductMapper.findNewGood();
+		List<TProductDto> tproducts = tproductMapper.findNewGood();
 		//获取热门发布的5个商品
 		List<TProduct> tproductHots = tproductMapper.findNewHot();
 		//获取特卖发布的5个商品
 		List<TProduct> tproductSpecials = tproductMapper.findNewSpecial();
+		
 		model.addAttribute("tproducts",tproducts);
 		model.addAttribute("tproductHots",tproductHots);
 		model.addAttribute("tproductSpecials",tproductSpecials);

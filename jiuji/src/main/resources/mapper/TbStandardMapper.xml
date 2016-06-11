@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jiuji.cn.business.tbstandard.dao.TbStandardMapper" >
+
+  <resultMap id="BaseResultMap" type="com.jiuji.cn.business.tbstandard.model.TbStandard" >
+    <id column="F_Standard_id" property="f_standard_id" jdbcType="INTEGER" />
+    <result column="F_ProductId" property="f_productId" jdbcType="INTEGER" /> 
+    <result column="F_StandardName" property="f_standardName" jdbcType="VARCHAR" /> 
+    <result column="F_StandardValue" property="f_standardValue" jdbcType="VARCHAR" /> 
+    <result column="F_XUHAO" property="f_xuhao" jdbcType="INTEGER"/> 
+  </resultMap>
+  
+  <sql id="Base_Column_List" > 
+        F_Standard_id,F_ProductId,F_StandardName,F_StandardValue,F_XUHAO
+  </sql>
+  
+  <select id="queryByProductId" resultMap="BaseResultMap" parameterType="com.jiuji.cn.business.tbstandard.model.TbStandard">
+      select 
+         <include refid="Base_Column_List" />  from tb_standard where F_ProductId=#{f_productId,jdbcType=INTEGER} ORDER BY F_XUHAO ASC
+   </select>
+   
+   <insert id="insert" parameterType="com.jiuji.cn.business.spcontact.model.SpContact"> 
+    insert into sp_contact (CONTACT_NAME,CONTACT_TELE,CONTACT_ADDRESS,F_ProductId)
+       values (#{contact_name,jdbcType=VARCHAR}, #{contact_tele,jdbcType=VARCHAR},#{contact_address,jdbcType=VARCHAR},#{f_productId,jdbcType=INTEGER})  
+   </insert>
+   
+  
+</mapper>

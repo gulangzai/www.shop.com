@@ -54,4 +54,10 @@ public class UserCtrl {
 		ra.setSuggestions(suggestions);
 		return ra;
 	}
+	 
+	
+	@RequestMapping("/toLwj") 
+    public String toLwj(){ 
+		return "/modules/person/lwj";
+	}
 }

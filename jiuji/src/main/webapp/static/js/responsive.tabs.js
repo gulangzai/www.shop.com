@@ -3,7 +3,7 @@
  * Yu, 2015-12-27
  * More info : https://github.com/sufangyu/responsive.tabs.js
 */
-;(function($){
+(function($){
 	$.fn.respTabs = function(options){
 		var defaults = {			
 			startIndex		: 0,					// 默认显示第几个

@@ -1,11 +1,12 @@
 <%@ include file="/WEB-INF/jsp/commons/taglib.jsp"%>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en"> 
 	<head>  
 	<script type="text/javascript" src="${ctxStatic}/js/jquery-1.7.2.js"></script>
 	<script type="text/javascript" src="${ctx}/plugins/tab/js/framework.js"></script>
 	<link href="${ctx}/plugins/tab/css/import_basic.css" rel="stylesheet" type="text/css"/>
-	<link  rel="stylesheet" type="text/css" id="skin" prePath="${ctx}/plugins/tab/" /><!--默认相对于根目录路径为../，可添加prePath属性自定义相对路径，如prePath="<%=request.getContextPath()%>"-->
+	<link  rel="stylesheet" type="text/css" id="skin" prePath="${ctx}/plugins/tab/" /><!--默认相对于根目录路径为../，可添加prePath属性自定义相对路径，如prePath="=request.getContextPath()"-->
 	<script type="text/javascript" charset="utf-8" src="${ctx}/plugins/tab/js/tab.js"></script>
 	</head>
 	

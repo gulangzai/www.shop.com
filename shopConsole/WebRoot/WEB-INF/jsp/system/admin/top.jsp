@@ -20,7 +20,6 @@
 	
 	
 	<script type="text/javascript" src="${ctxStatic}/js/jquery-1.7.2.js"></script>
-	<link rel="stylesheet" href="${ctxStatic}/css/datepicker.css" /><!-- 日期框 -->
 	<!--引入弹窗组件start-->
 	<script type="text/javascript" src="${ctx}/plugins/attention/zDialog/zDrag.js"></script>
 	<script type="text/javascript" src="${ctx}/plugins/attention/zDialog/zDialog.js"></script>

@@ -48,8 +48,8 @@ $(function () {
             }
         });
 
-        $(".navCon_on").hover(function () {
-            $(".cateMenu").show();
+        $(".navCon_on").hover(function () {  
+            $(".cateMenu").show(); 
         },
 		function () {
 		    $(".cateMenu").hide();

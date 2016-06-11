@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="${ctxStatic}/css/head.css" type="text/css" />
 <link rel="stylesheet" href="${ctxStatic}/css/homepage/carousel.css" />
 <script src="${ctxStatic}/js/jquery-1.7.1.min.js" type="text/javascript"></script>  
-<script src="${ctxStatic}/js/head.js" type="text/javascript"></script>
+
 <script> 
 var ctx = '${ctx}';
 	$(function() {
@@ -54,16 +54,16 @@ var ctx = '${ctx}';
 			<div class="wel">
 				<ul>
 					<li>欢迎来到啾唧网</li>
-					<li><a href="${ctx}/userCtrl/login.do" target="_self">请登录</a></li>
+					<li><a href="${ctx}/homePageCtrl/toLogin.do" target="_self">请登录</a></li>
 					<li><a href="${ctx}/homePageCtrl/toRegister.do" target="_self">免费注册</a></li>
 				</ul>
 			</div>
 			<div class="personal">
 				<ul>
-					<li><a href="#">个人中心</a></li>
-					<li><a href="#">收藏夹</a></li>
-					<li><a href="#">购物车</a></li>
-					<li><a href="#">网站导航</a></li>
+					<li><a href="javascript:alert('功能暂未开放')">个人中心</a></li>
+					<li><a href="javascript:alert('功能暂未开放')">收藏夹</a></li>
+					<li><a href="javascript:alert('功能暂未开放')">购物车</a></li>
+					<li><a href="javascript:alert('功能暂未开放')">网站导航</a></li>
 				</ul>
 			</div>
 		</div>
@@ -147,15 +147,15 @@ var ctx = '${ctx}';
 
 						<li><a class="curMenu" href="#">首页</a></li>
 
-						<li><a href="#">团购场</a></li>
+						<li><a href="javascript:alert('功能暂未开放')">团购场</a></li>
 
-						<li><a href="#">自营超市</a></li>
+						<li><a href="javascript:alert('功能暂未开放')">自营超市</a></li>
 
-						<li><a href="#">名家鉴赏</a></li>
+						<li><a href="javascript:alert('功能暂未开放')">名家鉴赏</a></li>
 
-						<li><a href="#">闪购</a></li>
+						<li><a href="javascript:alert('功能暂未开放')">闪购</a></li>
 
-						<li><a href="#">VIP专场</a></li>
+						<li><a href="javascript:alert('功能暂未开放')">VIP专场</a></li>
 
 					</ul>
 
@@ -183,7 +183,7 @@ var ctx = '${ctx}';
 			<div class="arrival">
 				<ul class="goods">
 				<c:forEach var="tproduct" items="${tproducts}">
-					<li><a href="${ctx}/productCtrl/toSingleProduct.do?f_ProductId=${tproduct.FProductId}" target="_blank"><img src="${ctxStatic}/images/${tproduct.FProductPic}"
+					<li><a href="${ctx}/productCtrl/toSingleProduct.do?f_ProductId=${tproduct.FProductId}" target="_blank"><img src="${ctxStatic}/images/${tproduct.path}"
 							alt="${tproduct.FProductName}" /></a> <span class="txt">${tproduct.FPrice}RMB</span></li> 
 			    </c:forEach>  
 				</ul>
@@ -217,18 +217,20 @@ var ctx = '${ctx}';
 		<div class="footer-content">
 			<div class="cooperation">
 				<ul>
-					<li><a href="#">商家入驻</a></li>
-					<li><a href="#">销售联盟</a></li>
-					<li><a href="#">关于我们</a></li>
-					<li><a href="#">商品专题</a></li>
-					<li><a href="#">热门搜索</a></li>
-					<li><a href="#">服务热线</a></li>
+					<li><a href="javascript:alert('功能暂未开放')">商家入驻</a></li>
+					<li><a href="javascript:alert('功能暂未开放')">销售联盟</a></li>
+					<li><a href="javascript:alert('功能暂未开放')">关于我们</a></li>
+					<li><a href="javascript:alert('功能暂未开放')">商品专题</a></li>
+					<li><a href="javascript:alert('功能暂未开放')">热门搜索</a></li>
+					<li><a href="javascript:alert('功能暂未开放')">服务热线</a></li>
 				</ul>
 			</div>
 			<div class="copy">&copy;2000-2016&nbsp;&nbsp;啾唧在线电子商务有限公司&nbsp;&nbsp;&nbsp;版权所有 皖ICP备16007801号</div>
 		</div>
 	</div>
 
+
+<script src="${ctxStatic}/js/head.js" type="text/javascript"></script>
 
 	<script type="text/javascript">
 		$(function() {
@@ -312,7 +314,8 @@ var ctx = '${ctx}';
 		});
 	</script>
 </body>
-<script src="${ctxStatic}/plugin/jquery/demo.js" type="text/javascript"></script>  
-<script src="${ctxStatic}/plugin/jquery/jquery.autocomplete.js" type="text/javascript"></script>
+<!-- 自动搜索 -->
+<!-- <script src="${ctxStatic}/plugin/jquery/demo.js" type="text/javascript"></script>  
+<script src="${ctxStatic}/plugin/jquery/jquery.autocomplete.js" type="text/javascript"></script> -->
 
 </html>

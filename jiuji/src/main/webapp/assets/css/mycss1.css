@@ -1,0 +1,39 @@
+*{
+	font-family: SimYou,'Microsoft YaHei',"Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.navbar-padding{
+	padding:0px;
+}
+.navbar-bjt{
+	background:url(../../assets/img/topnavi_bg_02.jpg);
+}
+#navbar-container>div>img{
+	margin-right: 10px;
+}
+#navbar-container>div>span{
+	color: #fff;
+	font-weight: bold;
+
+}
+.navbar-content{
+	padding:10px 0;
+}
+.navbar-content-3{
+	position: relative;
+	left:4%;
+	;
+}
+.navbar-content-3>span{
+	border-radius: 8px;
+}
+.left-bjt{
+	width:160px;
+	background:url(../../assets/img/aside.jpg);
+}
+#leftMenu_ul li{
+	/*width:160px;
+	height:50px;  这里不能设置宽度和高度~如果设置了 会影响下面箭头缩进功能*/
+}
+#leftMenu_ul li>a{
+	 opacity:0.4;
+}

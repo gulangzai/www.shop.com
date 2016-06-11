@@ -1,7 +1,7 @@
 ﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="/WEB-INF/jsp/commons/taglib.jsp"%>
-<%@ include file="/WEB-INF/jsp/commons/commons.jspf"%>
+<%@ include file="/WEB-INF/jsp/commons/commons.jspf"%> 
 <%
    String fClsId = request.getParameter("fClsId");
 %>
@@ -14,6 +14,7 @@ function flush(fClsId){
 <!DOCTYPE html>
 <html lang="en">
 	<head>  
+	
 	</head>
 <body>
  <div class="container-fluid" id="main-container">  
@@ -22,14 +23,14 @@ function flush(fClsId){
 					<div class="row-fluid"> 
 							<!-- 检索  -->
 							<form action="${ctx}/goodClass/listClass.do" method="post" name="userForm" id="userForm">
-							<table border='0'>
+							<input type="hidden" name="FCLSID" id="FCLSID" value="">
+					    <!--<table border='0'>
 								<tr> 
 									<td>
 										<span class="input-icon">
 											<input autocomplete="off" id="nav-search-input" type="text" name="USERNAME" value=" " placeholder="这里输入关键词" />
 											<i id="nav-search-icon" class="icon-search"></i>
-										</span>
-										<input type="hidden" name="FCLSID" id="FCLSID" value="">
+										</span> 
 									</td>
 									
 									<td><input class="span10 date-picker" name="lastLoginStart" id="lastLoginStart" value="" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="开始日期"/></td>
@@ -49,14 +50,11 @@ function flush(fClsId){
 									</td>
 									<td style="vertical-align:top;"><button class="btn btn-mini btn-light" onclick="search();"  title="检索"><i id="nav-search-icon" class="icon-search"></i></button></td>
 								    <td style="vertical-align:top;"><a class="btn btn-mini btn-light" onclick="toExcel();" title="导出到EXCEL"><i id="nav-search-icon" class="icon-download-alt"></i></a></td>
-									
-								</tr>
-							</table>
-							<div><a class="btn btn-small btn-success" onclick="add();">新增商品类别</a></div>
+							    </tr>
+							</table>-->
+							
+							<div><a class="btn btn-big btn-success" onclick="add();">新增商品类别</a></div>
 							<!-- 检索  -->
-							
-							
-							
 							 
 							<table id="table_report" class="table table-striped table-bordered table-hover"> 
 								<thead>
@@ -128,7 +126,7 @@ function flush(fClsId){
 		<!-- 引入 -->
 		<script type="text/javascript" src="${ctxStatic}/js/jquery.tips.js"></script><!--提示框-->
 		<script type="text/javascript">
-		
+ 
 		$(top.hangge());
 		
 		//检索

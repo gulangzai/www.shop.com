@@ -21,7 +21,7 @@
 				<ul id="leftTree" class="ztree"></ul>
 			</div>
 		</td>
-		<td style="width:85%;" valign="top" >
+		 <td style="width:85%;" valign="top" >
 		     <iframe name="treeFrame" id="treeFrame" frameborder="0" src="${ctx}/goodClass/listClass.do" style="margin:0 auto;width:100%;height:100%;"></iframe>
          </td>
 	</tr>
@@ -65,6 +65,7 @@
 			
 
 			var zNodes = ${classes};
+			
             //console.info(zNodes);
 			function showIconForTree(treeId, treeNode) {
 				return !treeNode.isParent;

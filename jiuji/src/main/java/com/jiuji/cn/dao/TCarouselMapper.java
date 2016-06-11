@@ -6,7 +6,7 @@ import com.jiuji.cn.model.TCarousel;
 
 public interface TCarouselMapper {
 	
-	 List<TCarousel> select(TCarousel tCarousel);
+	List<TCarousel> select(TCarousel tCarousel);
 	
 	TCarousel selectOnlyone(TCarousel tCarousel);
 

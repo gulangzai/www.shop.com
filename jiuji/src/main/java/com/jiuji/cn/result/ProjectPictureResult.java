@@ -16,4 +16,22 @@ public class ProjectPictureResult {
 		this.tPictures = tPictures;
 	}
 
+	public TProduct getTproduct() {
+		return tproduct;
+	}
+
+	public void setTproduct(TProduct tproduct) {
+		this.tproduct = tproduct;
+	}
+
+	public List<TPicture> gettPictures() {
+		return tPictures;
+	}
+
+	public void settPictures(List<TPicture> tPictures) {
+		this.tPictures = tPictures;
+	}
+	
+	
+
 }

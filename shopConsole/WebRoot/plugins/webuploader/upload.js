@@ -411,6 +411,7 @@
 
             } else {
                 stats = uploader.getStats();
+                //console.info(stats);
                 text = '共' + fileCount + '张（' +
                         WebUploader.formatSize( fileSize )  +
                         '），已上传' + stats.successNum + '张';
@@ -419,7 +420,7 @@
                     text += '，失败' + stats.uploadFailNum + '张';
                 }
             }
-
+            //alert(stats);
             $info.html( text );
         }
 
@@ -548,6 +549,12 @@
             	alert( 'Eroor: ' + code );
             }
         };
+        
+        uploader.on( 'uploadSuccess', function( file,response ) {  
+        	$("#PICTURES_ID").val(response.PICTURES_ID);
+            $( '#'+file.id ).find('.progress').remove();
+        });
+        
 
         $upload.on('click', function() {
             if ( $(this).hasClass( 'disabled' ) ) {

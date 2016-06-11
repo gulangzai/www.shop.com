@@ -213,7 +213,7 @@ Ext.define('MessageContainer', {
 	},
 
 	tpl : [
-			'<div class="l-im-message-warn">​欢迎使用FH Admin 即时通讯系统。</div>',
+			'<div class="l-im-message-warn">​欢迎使用啾唧网 即时通讯系统。</div>',
 			'<tpl for=".">',
 			'<div class="l-im-message">',
 			'<div class="l-im-message-header l-im-message-header-{source}">{from}  {timestamp}</div>',

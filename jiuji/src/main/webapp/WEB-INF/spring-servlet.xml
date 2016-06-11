@@ -14,6 +14,7 @@
     
     <!-- 扫描 -->
     <context:component-scan base-package="com.jiuji.cn.controller"/>
+    <context:component-scan base-package="com.jiuji.cn.business.spcontact"/>
     
     <!-- 避免ie执行ajax,返回json出现下载文件 -->
     <bean id="mappingJacksonHttpMessageConverter"
@@ -57,6 +58,7 @@
             <mvc:mapping path="/myStudent/**" /> 
             <mvc:mapping path="/openRecode/**" />
             <mvc:mapping path="/productCtrl/**"/>
+            <mvc:mapping path="/spContactController/**"/>
             <mvc:mapping path="/homePage/toIndex.do"/>
             <bean class="com.jiuji.cn.interceptor.CommonInterceptor"></bean> 
         </mvc:interceptor>  

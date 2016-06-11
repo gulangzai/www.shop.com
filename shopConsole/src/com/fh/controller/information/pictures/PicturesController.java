@@ -63,6 +63,7 @@ public class PicturesController extends BaseController {
 		Map<String,String> map = new HashMap<String,String>();
 		String  ffile = DateUtil.getDays(), fileName = "";
 		PageData pd = new PageData();
+		String uuid = this.get32UUID();
 		if(Jurisdiction.buttonJurisdiction(menuUrl, "add")){
 			if (null != file && !file.isEmpty()) {
 				String filePath = PathUtil.getClasspath() + Const.FILEPATHIMG + ffile;		//文件上传路径
@@ -71,7 +72,7 @@ public class PicturesController extends BaseController {
 				System.out.println("上传失败");
 			}
 			
-			pd.put("PICTURES_ID", this.get32UUID());			//主键
+			pd.put("PICTURES_ID", uuid);			//主键
 			pd.put("TITLE", "图片");								//标题
 			pd.put("NAME", fileName);							//文件名
 			pd.put("PATH", ffile + "/" + fileName);				//路径
@@ -80,9 +81,11 @@ public class PicturesController extends BaseController {
 			pd.put("BZ", "图片管理处上传");						//备注
 			//加水印
 			Watermark.setWatemark(PathUtil.getClasspath() + Const.FILEPATHIMG + ffile + "/" + fileName);
+			
 			picturesService.save(pd);
 		}
 		map.put("result", "ok");
+		map.put("PICTURES_ID", uuid);
 		return AppUtil.returnObject(pd, map);
 	}
 	

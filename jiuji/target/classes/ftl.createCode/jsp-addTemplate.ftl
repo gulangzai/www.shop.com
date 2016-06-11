@@ -25,19 +25,18 @@
   <div class="modal-body">
  	  <form method="post" role="form" class="form-horizontal"  id="execute${table.name}Add" > 
  	   <!-- 获取 项目 的 uid -->    	
-      	 <input id="XCROJECT_UID" type="hidden" name="ROJECT_UID" fieldname="PROJECT_UID"  />
-      	 <%--  <input  id="XM_PRJ_STRUC_UID"  type="hidden"  fieldname="PRJ_STRUC_UID" value="" />--%>
+      	  <input id="XCROJECT_UID" type="hidden" name="ROJECT_UID" fieldname="PROJECT_UID"  /> 
 	  	  <input type="hidden" id="target_uid" fieldname="target_uid"  /> 
 				
 		  <#if  fields?exists>
 		    <#list fields  as field>
-		        <#if  field.comment !="">
+		        <#if  field.comment !=""  && field.column_key!="PRI">
 		       <div class="form-group" >
 		  			<label class="col-sm-2 control-label no-padding-right" >
 						${field.comment}：<span class="required-indicator">*</span>
 					</label>
 					<div class="col-sm-10">
-					 <input value="" id="${field.name}" datatype="*" nullmsg="请填写${field.comment}"    placeholder="请填写${field.comment}" type="text"  fieldname="${field.name}" class="col-xs-11 col-sm-11"/>
+					 <input value="" id="${field.name}" datatype="*" nullmsg="请填写${field.comment}"    placeholder="请填写${field.comment}" type="text"  fieldname="${field.name}" class="col-xs-11 col-sm-11 <#if field.data_type =="datetime">dataPicker</#if>"/>
 					</div>
 			   </div>
 			   </#if>
@@ -50,14 +49,14 @@
 				        附件：&nbsp;
 				</label> 
 				<div class="col-sm-9">
-					<span style="margin:4px auto;" class="btn  btn-white btn-default btn-round " onclick="selectFile(this);" file_type="10701" >
+					<span style="margin:4px auto;" class="btn  btn-white btn-default btn-round " onclick="selectFile(this);" file_type="${file_type}" >
 						<i class="ace-icon fa fa-cloud-upload bigger-100"></i>
 							附件上传
 					</span>
 						<form class="form-inline"  id="queryForm1" width="100%"
 					   role="form" style="border:solid 1px #ddd;height:50px;line-height:50px;vertical-align:middle;"></form>
 					<table  role="presentation" class="table table-striped">
-						<tbody onlyView="true" showType="width:120px;height:120px;quanxian:true;heightss:160px;heights:40px;del:true;attr:multi;preview:false" class="files showFileTab" data-toggle="modal-gallery" data-target="#modal-gallery"  file_type="10701" fjlb="media"></tbody>
+						<tbody onlyView="true" showType="width:120px;height:120px;quanxian:true;heightss:160px;heights:40px;del:true;attr:multi;preview:false" class="files showFileTab" data-toggle="modal-gallery" data-target="#modal-gallery"  file_type="${file_type}" fjlb="media"></tbody>
 					</table>
 				</div>
 			</div>
@@ -86,23 +85,21 @@ var controllernameUrl="${pageContext.request.contextPath}/";
 var scripts =[null];
 ace.load_ajax_scripts(scripts, function() { 
 	 DatePicker.datepicker(".REPORT_DATE1"); 
-     DatePicker.datepicker(".REPORT_DATE_ONE");  
-     DatePicker.datepicker("#ZX_KGRQ");
-     DatePicker.datepicker("#ZX_WCRQ"); 
+     DatePicker.datepicker(".REPORT_DATE2");   
 }); 
 
 
 //点击保存按钮
 $(function() {	 
 	$(".modal-backdrop").attr("class","");
-	//DatePicker.datepicker("#SLOG_DATE");
+	DatePicker.datepicker(".dataPicker");
 	validform=FormValid.validbyformid(execute${table.name}Add); 
 	$('#XCROJECT_UID').val($('#project_uid').val());
 	$("#btnAdd${table.name}").click(function() {
 	  if(validform.check()){
 		if($("#execute${table.name}Add").validationButton()) {
 			//生成json串
-			var data = Form2Json.formToJSON(executeFrmXcAddXcAdd);
+			var data = Form2Json.formToJSON(execute${table.name}Add);
 			//组成保存json串格式
 			var data1 = defaultJson.packSaveJson(data);
 			$.ajax({
@@ -114,7 +111,7 @@ $(function() {
 				type : 'post',
 				success : function(response) {
 					xAlert("信息提示","${table.name}添加成功",1);
-					$("#btnCloseXcJd").click();
+					$("#btnClose${table.name}add").click();
 					_reload();
 			      }
 			});
@@ -123,29 +120,14 @@ $(function() {
 	   }else {
 		   return;
 	   }
-	});
-	
-	 $("#addYanshouDetail").click(function(){
-		$('#newAddDetail').attr("data-target","XMZK-XMMC");
-		$('#XMZK-XMMC').removeData("bs.modal");
-		$("#XMZK-XMMC").empty();
-		$('#XMZK-XMMC').modal({
-			backdrop: 'static'
-		});
-		
-		$.get("<#--${ctx}-->/jsp/business/projectaccept/yanshoudetail-add.jsp",function(data) {
-			console.info(data);
-			$("#XMZK-XMMC").empty();
-			$("#XMZK-XMMC").html("");
-			$("#XMZK-XMMC").html(data);
-		}); 
 	}); 
+	
 });
 
 function selectFile(obj){
 	var targetUid = $('#target_uid').val();
 	var file_type = $(obj).attr('file_type');
-	setFileData("PM_YANSHOU","YANSHOU_UID",targetUid,file_type);
+	setFileData("${table.name}","${tableKey}",targetUid,file_type);
     document.getElementById("fileupload_btn").click();	 
 }
 function _reload(){

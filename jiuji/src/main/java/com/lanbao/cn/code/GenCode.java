@@ -18,6 +18,11 @@ import com.lanbao.cn.db.single.Table;
 
 import freemarker.template.Template;
 
+/**
+ * 
+ * @author liyi
+ * @time  2016/5/20
+ */
 public class GenCode {
 	
 	/*
@@ -25,34 +30,74 @@ public class GenCode {
 	 * 字段名:fieldName
 	 * 描述:descName
 	 * */
+	String database = "cpmi_test";
+	String tableName="jc_prj_points_damage";
+	String upperTableName="PRJ_POINTS_DAMAGE";
+	String tableKey = "PRJ_POINTS_DAMAGE_UID";
+	String file_type="12001";
 	
-	String tableName="pm_yanshou";
-	private final String  outFile="add.jsp";  
-	private final String controllerName = "projectaccept/pm_yanshouController";
+	String packageName="jcprjpointsdamage";
+	String controllerXXX="JcPrjPointsDamage";
+	/*--------------------------------------------------------*/
+	
+	
+	
+	private final String indexOutFile = tableName+"_index.jsp";
+	private final String  addOutFile=tableName+"_add.jsp";  
+	private final String  detailOutFile=tableName+"_detail.jsp";  
+	private final String  editOutFile=tableName+"_edit.jsp";  
+	private final String controllerName = packageName+"/"+controllerXXX+"Controller";
+	
+	
 	Logger logger = LoggerFactory.getLogger(GenCode.class);
-	 
-	GenCode(){  
+	
+	public GenCode(){   
 		FreemarkerUtil fk = new FreemarkerUtil(); 
-		HashMap<String,Object> rootMap = createData(tableName);
-		fk.htmlOut("jsp-addTemplate.ftl", rootMap, tableName+"_"+outFile);
-		logger.info("["+outFile+"]创建成功");
+		HashMap<String,Object> rootMap = createData(tableName,database);
+		initPara(rootMap);
+		
+		fk.htmlOut("jsp-indexTemplate.ftl", rootMap, indexOutFile);
+		logger.info("["+indexOutFile+"]创建成功");
+		
+		fk.htmlOut("jsp-addTemplate.ftl", rootMap,addOutFile);
+		logger.info("["+addOutFile+"]创建成功"); 
+		
+		fk.htmlOut("jsp-detailTemplate.ftl", rootMap, detailOutFile);
+		logger.info("["+detailOutFile+"]创建成功");
+		
+		fk.htmlOut("jsp-editTemplate.ftl", rootMap, editOutFile);
+		logger.info("["+editOutFile+"]创建成功"); 
+		
+	}
+	
+	public void initPara(HashMap<String,Object> rootMap){
+		rootMap.put("indexOutFile", indexOutFile);
+		rootMap.put("addOutFile", addOutFile);
+		rootMap.put("detailOutFile", detailOutFile);
+		rootMap.put("editOutFile", editOutFile);
+		rootMap.put("file_type",file_type);
+		rootMap.put("upperTableName", upperTableName);
+		rootMap.put("tableKey", tableKey);
 	}
 	
 	
-	public HashMap createData(String tableName){
+	public HashMap createData(String tableName,String database){
 		HashMap map = new HashMap();
 		DBPool  dbPool = DBPoolSource.getInstance("1");
 		Connection conn = dbPool.getConnection();
 		try {
 			String sqlTable = "select *from information_schema.`TABLES` where TABLE_NAME='"+tableName+"';";
 			System.out.println(sqlTable);
-			String sql = "select *from information_schema.columns where table_name='"+tableName+"';";
+			String sql = "select *from information_schema.columns where table_name='"+tableName+"' AND TABLE_SCHEMA='"+database+"';";
+			System.out.println(sql);
 			Statement stat = conn.createStatement();
 			ResultSet tableRs = stat.executeQuery(sqlTable); 
 			Table table = new Table();
 			table.setName(tableName);
-		 	while(tableRs.next())
-			  table.setDesc(tableRs.getString("TABLE_COMMENT"));
+		 	while(tableRs.next()){
+		 		 table.setDesc(tableRs.getString("TABLE_COMMENT"));
+		 	}
+			 
 			ResultSet rs = stat.executeQuery(sql);
 			ArrayList<Field> fields = new ArrayList<Field>();
 			while(rs.next()){
@@ -60,6 +105,8 @@ public class GenCode {
 				 field.setName(rs.getString("COLUMN_NAME"));
 				 field.setIs_nullable(rs.getString("IS_NULLABLE"));
 				 field.setComment(rs.getString("COLUMN_COMMENT"));
+				 field.setColumn_key(rs.getString("COLUMN_KEY"));
+				 field.setData_type(rs.getString("DATA_TYPE"));
 				 System.out.println("......"+field.getComment());
 				 fields.add(field);
 			}

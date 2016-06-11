@@ -15,9 +15,28 @@
     <result column="F_Degree" property="FDegree" jdbcType="INTEGER" /> 
   </resultMap>
   
+    <resultMap id="BaseResultMap1" type="com.jiuji.cn.model.TProductDto" >
+    <id column="F_ProductId" property="FProductId" jdbcType="VARCHAR" />
+    <result column="F_ProductName" property="FProductName" jdbcType="VARCHAR" /> 
+    <result column="F_ProductPic" property="FProductPic" jdbcType="INTEGER" /> 
+    <result column="F_ProductDesc" property="FProductDesc" jdbcType="INTEGER" /> 
+    <result column="F_Price" property="FPrice" jdbcType="INTEGER" /> 
+    <result column="F_ClsId" property="FClsId" jdbcType="VARCHAR" /> 
+    <result column="F_ProductTime" property="FProductTime" jdbcType="TIMESTAMP" /> 
+    <result column="F_Status" property="FStatus" jdbcType="INTEGER" /> 
+    <result column="F_IsSpecial" property="FIsSpecial" jdbcType="INTEGER" /> 
+    <result column="F_Degree" property="FDegree" jdbcType="INTEGER" /> 
+    <result column="F_PATH" property="path" jdbcType="VARCHAR" /> 
+  </resultMap>
+  
   <sql id="Base_Column_List" > 
         F_ProductId,F_ProductName,F_ProductPic,F_ProductDesc,F_Price,F_ClsId,F_ProductTime,F_Status,
         F_IsSpecial,F_Degree
+  </sql>
+  
+   <sql id="Base_Column_List1" > 
+        F_ProductId,F_ProductName,F_ProductPic,F_ProductDesc,F_Price,F_ClsId,F_ProductTime,F_Status,
+        F_IsSpecial,F_Degree,F_PATH
   </sql>
   
    <select id="select" resultMap="BaseResultMap" parameterType="com.jiuji.cn.model.TProduct">
@@ -50,26 +69,57 @@
    
    
    
-   <select id="findNewGood" resultMap="BaseResultMap" parameterType="com.jiuji.cn.model.TProduct">
+   <select id="findNewGood" resultMap="BaseResultMap1" parameterType="com.jiuji.cn.model.TProduct">  
       select 
-         <include refid="Base_Column_List" />
-      from t_product  where F_Status = 0  order by F_ProductTime desc  limit 0,3 
+			F_PRODUCTNAME,	
+			F_PRODUCTDESC,	
+			F_PRICE,	
+			F_CLSID,	
+			F_ISSPECIAL,	
+			F_ProductId,
+            tb_pictures.PATH as F_PATH
+		from 
+			T_PRODUCT   inner join tb_pictures on T_PRODUCT.F_ProductPic=tb_pictures.PICTURES_ID  
+	  where F_Status = 0  order by F_ProductTime desc  limit 0,3 
+			
    </select>
    
-   <select id="findNewHot" resultMap="BaseResultMap" parameterType="com.jiuji.cn.model.TProduct">
-      select 
-         <include refid="Base_Column_List" />
-      from t_product  where F_Status = 0  order by F_Degree desc  limit 0,3 
+   <select id="findNewHot" resultMap="BaseResultMap1" parameterType="com.jiuji.cn.model.TProduct">
+   select 
+			F_PRODUCTNAME,	
+			F_PRODUCTDESC,	
+			F_PRICE,	
+			F_CLSID,	
+			F_ISSPECIAL,	
+			F_ProductId,
+            tb_pictures.PATH as F_PATH
+		from 
+			T_PRODUCT   inner join tb_pictures on T_PRODUCT.F_ProductPic=tb_pictures.PICTURES_ID  
+	  where F_Status = 0   order by F_Degree desc   limit 0,3  
    </select>
    
     <select id="findNewSpecial" resultMap="BaseResultMap" parameterType="com.jiuji.cn.model.TProduct">
       select 
-         <include refid="Base_Column_List" />
-      from t_product  where F_Status = 0 and F_IsSpecial=1  order by F_Degree desc  limit 0,3 
+			F_PRODUCTNAME,	
+			F_PRODUCTDESC,	
+			F_PRICE,	
+			F_CLSID,	
+			F_ISSPECIAL,	
+			F_ProductId,
+            tb_pictures.PATH as F_PATH
+		from 
+			T_PRODUCT   inner join tb_pictures on T_PRODUCT.F_ProductPic=tb_pictures.PICTURES_ID  
+	  where F_Status = 0  and F_IsSpecial=1  order by F_Degree desc  limit 0,3   
    </select>
    
    <select id="queryAll" resultMap="BaseResultMap">
         select  <include refid="Base_Column_List" />  from t_class 
+   </select>
+   
+   <select id="queryByType" resultMap="BaseResultMap"> 
+    select 
+         <include refid="Base_Column_List" />
+      from t_product  where F_Status = 0  AND F_ClsId =   #{FClsId,jdbcType=INTEGER}
    </select>
    
      <select id="selectOnlyone" resultMap="BaseResultMap" parameterType="com.jiuji.cn.model.TCarousel">

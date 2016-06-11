@@ -7,12 +7,12 @@
 <div class="footer-content">
 	<div class="cooperation">
 			<ul>
-			<li><a href="#">商家入驻</a></li>
-			<li><a href="#">销售联盟</a></li>
-			<li><a href="#">关于我们</a></li>
-			<li><a href="#">商品专题</a></li>
-			<li><a href="#">热门搜索</a></li>
-			<li><a href="#">服务热线</a></li>
+			<li><a href="javascript:alert('功能暂未开放')">商家入驻</a></li>
+			<li><a href="javascript:alert('功能暂未开放')">销售联盟</a></li>
+			<li><a href="javascript:alert('功能暂未开放')">关于我们</a></li>
+			<li><a href="javascript:alert('功能暂未开放')">商品专题</a></li>
+			<li><a href="javascript:alert('功能暂未开放')">热门搜索</a></li>
+			<li><a href="javascript:alert('功能暂未开放')">服务热线</a></li>
 			</ul>
 	</div>
     <div class="copy">&copy;2000-2016&nbsp;&nbsp;啾唧在线电子商务有限公司&nbsp;&nbsp;&nbsp;版权所有   皖ICP备16007801号</div> 

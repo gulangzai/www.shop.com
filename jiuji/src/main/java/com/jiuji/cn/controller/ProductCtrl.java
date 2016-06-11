@@ -1,9 +1,7 @@
 package com.jiuji.cn.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +10,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -21,9 +18,9 @@ import com.jiuji.cn.model.TProduct;
 import com.jiuji.cn.result.ProjectPictureResult;
 import com.jiuji.cn.service.PictureService;
 import com.jiuji.cn.service.ProductService;
-import com.jiuji.cn.service.UserService;
+import com.jiuji.cn.business.tbstandard.model.TbStandard;
+import com.jiuji.cn.business.tbstandard.service.TbStandardService;
 
-import javacommon.base.ResultAction;
 import javacommon.base.Suggestion;
 import javacommon.base.Vo;
 
@@ -36,12 +33,18 @@ public class ProductCtrl {
 	@Autowired
 	PictureService pictureService;
 	
+	@Autowired
+	TbStandardService tbStandardService;
+	
+	
 	@RequestMapping("/toSingleProduct") 
 	public String toSingleProduct(String f_ProductId,Model model,HttpServletRequest request,HttpServletResponse response,HttpSession session){  
 		//String message =  userService.login(username,password,checkboxmark,model,request,response,session);  
 		TProduct tproduct = productService.queryById(f_ProductId);
 		List<TPicture> tPictures = pictureService.queryByProduct(tproduct);  
+		List<TbStandard> tbStandards = tbStandardService.queryByProductId(new TbStandard(Integer.parseInt(tproduct.getFProductId())));
 		model.addAttribute("singleProduct", tproduct);
+		model.addAttribute("tbStandards",tbStandards);
 		model.addAttribute("t_pictures",tPictures);
 		return "/modules/product/singleProduct";
 	}

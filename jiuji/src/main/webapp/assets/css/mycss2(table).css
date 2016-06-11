@@ -1,0 +1,38 @@
+/*table���ٿص���ɫ*/
+#grid_table>tbody>tr:hover,#grid_table>tbody>tr>td:hover{
+    background-color:#8A8E97;
+}
+.colorshow{
+    color: #4E4C4C;
+}
+/*���б���͹رձ�ǩ����ʽ*/
+.btn-1{
+    background-color: #009ca3 !important;
+    color: #fff !important;
+}
+.btn-2{
+	background-color: #657892 !important;
+	color: #fff !important;
+}
+.btn-sms{
+	padding:4px 9px;
+	border-width:1px;
+	font-size:13px;
+	line-height:1.39;
+	}
+
+.colorshow1{
+color:#ee6e11;
+}
+.fd{
+            position:absolute;
+            top:20%;
+            left:35%;
+            scale(3,3);
+            z-index: 100;
+            transform: scale(3,3);
+            -ms-transform: scale(3,3);
+            -moz-transform: scale(3,3);
+            -webkit-transform: scale(3,3);
+            -o-transform: scale(3,3);
+        }

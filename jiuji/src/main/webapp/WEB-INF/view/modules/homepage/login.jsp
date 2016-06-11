@@ -26,7 +26,7 @@
        <div class="bao" style="color:red;text-align:center;">${message}</div>
   </c:if>
  <form method="post" action="${ctx}/userCtrl/login.do" id="loginForm" name="loginForm">
-      <h4><a href="${ctx}/homePageCtrl/toRegister.do" target="_self" title="立即注册" tabindex="7">立即注册 &gt;</a>用户登录</h4>
+      <h4 style="color:red;"><a href="${ctx}/homePageCtrl/toRegister.do" target="_self" title="立即注册" tabindex="7">立即注册 &gt;</a>用户登录</h4>
          <p class="logininput">
          <input id="username" name="username" size="15" tabindex="1" maxlength="50" type="text" 
              placeholder="手机号/会员名/邮箱" value="${cookie.userName.value}" /><span class="clearb"></span></p>
@@ -36,8 +36,8 @@
                <p class="logincheckbox">
                <label> <input id="check" type="checkbox"  name="checkbox" 	 onChange="change()"/>记住密码</label>
               <input type="hidden" name="checkboxmark" value="${cookie.checkboxmark.value}">
-            <a href="#">忘记密码</a> </p> 
-         <span class="button-login" id="submit">登录</span> 
+            <a href="javascript:alert('功能暂未开放')">忘记密码</a></p> 
+         <span class="button-login" id="submit">登&nbsp;录</span>  
          </form>
     </div> 
 </div>

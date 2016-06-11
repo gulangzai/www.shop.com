@@ -1,10 +1,9 @@
 eclipse.preferences.version=1
 encoding//WebRoot/WEB-INF/jsp/commons/commons.jspf=UTF-8
 encoding//WebRoot/WEB-INF/jsp/information/goodClass/goodClass_list.jsp=UTF-8
-encoding//WebRoot/WEB-INF/jsp/system/admin/default.jsp=UTF-8
+encoding//WebRoot/WEB-INF/jsp/information/pictures/pictures_edit.jsp=UTF-8
 encoding//WebRoot/WEB-INF/jsp/system/admin/head.jsp=UTF-8
-encoding//WebRoot/WEB-INF/jsp/system/admin/left.jsp=UTF-8
-encoding//WebRoot/WEB-INF/jsp/system/admin/tab.jsp=UTF-8
+encoding//WebRoot/WEB-INF/jsp/system/admin/tab.jsp=ISO-8859-1
 encoding//WebRoot/WEB-INF/jsp/system/admin/top.jsp=UTF-8
 encoding//WebRoot/WEB-INF/jsp/system/tools/printPage.jsp=UTF-8
 encoding//resources/dbconfig.properties=UTF-8

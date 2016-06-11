@@ -48,12 +48,12 @@ $(function () {
             }
         });
 
-       /* $(".navCon_on").hover(function () {
-            $(".cateMenu").show();
+       /*  $(".navCon_on").hover(function () {
+            $(".cateMenu").show(); 
         },
 		function () {
 		    $(".cateMenu").hide();
-		})*/
+		}) */
 
     } ();
 
@@ -84,11 +84,11 @@ $(function () {
 		)
     } ();
 
-
     /*topBar缃《*/
     var positionMenu = function (id) {
         var mc = document.getElementById(id);
-        /*var minNumber = mc.offsetTop;*/
+       // var minNumber = mc.offsetTop; 
+        var minNumber = 1;
         var isIE6 = navigator.appVersion.indexOf("MSIE 6") > -1;
 
         $(window).scroll(function () {
@@ -105,6 +105,7 @@ $(function () {
     } ("topBar")
 
 
+   
 
     /*蹇嵎鎼滅储*/
 //    var quickSearch = function (id) {

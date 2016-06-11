@@ -1,11 +1,13 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="/WEB-INF/jsp/commons/taglib.jsp"%>
-<%-- <%@ include file="/WEB-INF/jsp/commons/commons.jspf"%> --%>
+<%@ include file="/WEB-INF/jsp/commons/commons.jspf"%> 
+	
 <!DOCTYPE html>
 <html lang="en">
 	<head> 
-	<%@ include file="/WEB-INF/jsp/system/admin/top.jsp"%> 
+	
 	
 	<!--查看图片插件 -->
 	<link rel="stylesheet" media="screen" type="text/css" href="${ctx}/plugins/zoomimage/css/zoomimage.css" />
@@ -142,11 +144,16 @@
 </div><!--/#page-content-->
 </div><!--/.fluid-container#main-container--> 
 		
-		<!-- 引入 -->
 		<script type="text/javascript">window.jQuery || document.write("<script src='${ctx}/static/js/jquery-1.9.1.min.js'>\x3C/script>");</script>
-	    <script src="${ctx}/static/js/bootstrap.min.js"></script>  
+		<script src="${ctx}/static/js/bootstrap.min.js"></script>
 		<script src="${ctx}/static/js/ace-elements.min.js"></script>
-	    <script src="${ctx}/static/js/ace.min.js"></script> 
+		<script src="${ctx}/static/js/ace.min.js"></script>
+		
+		<script type="text/javascript" src="${ctx}/static/js/chosen.jquery.min.js"></script><!-- 下拉框 -->
+		<script type="text/javascript" src="${ctx}/static/js/bootstrap-datepicker.min.js"></script><!-- 日期框 -->
+		<script type="text/javascript" src="${ctx}/static/js/bootbox.min.js"></script><!-- 确认窗口 -->
+		<!-- 引入 -->
+		<script type="text/javascript" src="${ctx}/static/js/jquery.tips.js"></script><!--提示框-->
 		<!-- 引入 -->
 		
 		

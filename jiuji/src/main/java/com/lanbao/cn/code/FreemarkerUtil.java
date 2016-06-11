@@ -5,6 +5,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
 
+import com.lanbao.cn.db.single.Table;
+
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -33,7 +35,17 @@ public class FreemarkerUtil {
 	public void htmlOut(String name,Map<String,Object> rootMap,String outFile){
 		FileWriter out = null;
 		try {
-			out = new FileWriter(new File("E:/code/" + outFile));
+			
+			Table table = (Table) rootMap.get("table");
+			File fileDir = new File("E:/code/"+ table.getName());
+			if(!fileDir.exists()){
+				fileDir.mkdir();
+			}
+			File file = new File("E:/code/"+ table.getName()+"/"+ outFile);
+			if(!file.exists()){
+				file.createNewFile();
+			} 
+			out = new FileWriter(file);
 			Template temp = this.getTemplate(name);
 			temp.process(rootMap, out);
 		} catch (IOException e) {

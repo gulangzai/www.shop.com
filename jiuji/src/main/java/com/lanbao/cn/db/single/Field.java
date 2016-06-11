@@ -10,6 +10,8 @@ public class Field {
 	
 	String is_nullable;
 	
+	String column_key;
+	
 	
 
 	public String getName() {
@@ -43,6 +45,15 @@ public class Field {
 	public void setIs_nullable(String is_nullable) {
 		this.is_nullable = is_nullable;
 	}
+
+	public String getColumn_key() {
+		return column_key;
+	}
+
+	public void setColumn_key(String column_key) {
+		this.column_key = column_key;
+	}
+
 	
 	
 }

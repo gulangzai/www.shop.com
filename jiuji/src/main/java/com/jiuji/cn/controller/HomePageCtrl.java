@@ -1,5 +1,6 @@
 package com.jiuji.cn.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,9 +49,14 @@ public class HomePageCtrl  extends CommonController{
 		return "/commons/footer";
 	}
 	
+	@RequestMapping("/toLogin")
+	public String toLogin(){  
+		return "/modules/homepage/login";
+	}
+	
 	@RequestMapping("/toRegister")
 	public String register(){
-		return "/modules/homepage/register";
+		return "/modules/homepage/newRegister";
 	}
 	
 	/**
@@ -61,6 +67,13 @@ public class HomePageCtrl  extends CommonController{
 	public String homePage(Model model,HttpSession session){
 		homePageService.queryInfomation(model,session);
 		return "/modules/homepage/homepage";
+	}
+	
+	@RequestMapping("/toRecordContact")
+	public String toRecordContact(Model model,HttpSession session,HttpServletRequest request){ 
+		model.addAttribute("productName",request.getParameter("productName"));
+		model.addAttribute("productId",request.getParameter("productId"));
+		return "/modules/product/recordContact";
 	}
 	
 }
