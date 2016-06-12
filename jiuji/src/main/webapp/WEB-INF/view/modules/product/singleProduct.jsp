@@ -22,6 +22,11 @@
 <script type="text/javascript" src="${ctxStatic}/js/responsive.tabs.js"></script>
  
 <script src="${ctx}/assets/js/bootstrap.min.js" type="text/javascript"></script> 
+
+<%
+String rootFile = request.getScheme()+"://"+request.getServerName()+":8088/file";
+%>
+
  
 <script type="text/javascript">
 var ctx ='${ctx}';
@@ -152,9 +157,9 @@ $(function() {
 	<div class="goods">
 		<div class="preview-left">
 			<div id="vertical" class="bigImg">
-			       <c:forEach var="t_picture" items="${t_pictures}">
-					 <img src="${ctxStatic}/images/product/mid/${t_picture.fMidPic}" width="400" height="400" alt="" id="midimg" />
-                   </c:forEach>  
+			     <img src="<%=rootFile%>/${singleProduct.path}" width="400" height="400" alt="" id="midimg" />
+			       <!--<c:forEach var="t_picture" items="${t_pictures}"> 
+                   </c:forEach>  -->
 				<div style="display: none;" id="winSelector"></div>
 			</div>
 			<!--bigImg end-->
@@ -162,10 +167,10 @@ $(function() {
 				<div class="scrollbutton smallImgUp disabled"></div>
 				<div id="imageMenu">
 					<ul> 
-					<c:forEach var="t_picture" items="${t_pictures}">
-						<li  id="onlickImg"><img src="${ctxStatic}/images/product/small/${t_picture.fSmall}" width="68"
+					<li  id="onlickImg"><img src="<%=rootFile%>/${singleProduct.path}" width="68"
 							height="68" alt="水果" /></li>
-					</c:forEach> 
+					<!--<c:forEach var="t_picture" items="${t_pictures}"> 
+					</c:forEach>  -->
 					</ul>
 				</div>
 				<div class="scrollbutton smallImgDown"></div>

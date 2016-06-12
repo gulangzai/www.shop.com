@@ -62,9 +62,18 @@
      </where> 
    </select>
    
-   <select id="queryById" resultMap="BaseResultMap" parameterType="com.jiuji.cn.model.TProduct">
-      select 
-         <include refid="Base_Column_List" />  from t_product where F_ProductId=#{FProductId,jdbcType=VARCHAR}
+   <select id="queryById" resultMap="BaseResultMap1" parameterType="com.jiuji.cn.model.TProduct">
+    select 
+			F_PRODUCTNAME,	
+			F_PRODUCTDESC,	
+			F_PRICE,	
+			F_CLSID,	
+			F_ISSPECIAL,	
+			F_ProductId,
+            tb_pictures.PATH as F_PATH
+		from 
+			T_PRODUCT   inner join tb_pictures on T_PRODUCT.F_ProductPic=tb_pictures.PICTURES_ID  
+	  where F_Status = 0  AND F_ProductId=#{FProductId,jdbcType=VARCHAR}
    </select>
    
    
@@ -98,7 +107,7 @@
 	  where F_Status = 0   order by F_Degree desc   limit 0,3  
    </select>
    
-    <select id="findNewSpecial" resultMap="BaseResultMap" parameterType="com.jiuji.cn.model.TProduct">
+    <select id="findNewSpecial" resultMap="BaseResultMap1" parameterType="com.jiuji.cn.model.TProduct">
       select 
 			F_PRODUCTNAME,	
 			F_PRODUCTDESC,	
@@ -122,7 +131,7 @@
       from t_product  where F_Status = 0  AND F_ClsId =   #{FClsId,jdbcType=INTEGER}
    </select>
    
-     <select id="selectOnlyone" resultMap="BaseResultMap" parameterType="com.jiuji.cn.model.TCarousel">
+   <select id="selectOnlyone" resultMap="BaseResultMap" parameterType="com.jiuji.cn.model.TCarousel">
      select 
         <include refid="Base_Column_List" />
      from t_carousel

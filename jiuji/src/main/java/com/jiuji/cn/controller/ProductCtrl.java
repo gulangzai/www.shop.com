@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jiuji.cn.model.TPicture;
 import com.jiuji.cn.model.TProduct;
+import com.jiuji.cn.model.TProductDto;
 import com.jiuji.cn.result.ProjectPictureResult;
 import com.jiuji.cn.service.PictureService;
 import com.jiuji.cn.service.ProductService;
@@ -40,7 +41,7 @@ public class ProductCtrl {
 	@RequestMapping("/toSingleProduct") 
 	public String toSingleProduct(String f_ProductId,Model model,HttpServletRequest request,HttpServletResponse response,HttpSession session){  
 		//String message =  userService.login(username,password,checkboxmark,model,request,response,session);  
-		TProduct tproduct = productService.queryById(f_ProductId);
+		TProductDto tproduct = productService.queryById(f_ProductId);
 		List<TPicture> tPictures = pictureService.queryByProduct(tproduct);  
 		List<TbStandard> tbStandards = tbStandardService.queryByProductId(new TbStandard(Integer.parseInt(tproduct.getFProductId())));
 		model.addAttribute("singleProduct", tproduct);
@@ -52,12 +53,12 @@ public class ProductCtrl {
 	@RequestMapping("/toProjectListPage") 
 	public String toProjectListPage(String f_clsId,Model model,HttpServletRequest request,HttpServletResponse response,HttpSession session){  
 		//String message =  userService.login(username,password,checkboxmark,model,request,response,session);  
-		List<TProduct> tproducts = productService.queryByClsId(f_clsId);
+		List<TProductDto> tproducts = productService.queryByClsId(f_clsId);
 		List<ProjectPictureResult> projectPictureResults = new ArrayList<ProjectPictureResult>();
-		for(TProduct tproduct:tproducts){
+		for(TProductDto tproduct:tproducts){
 			List<TPicture> tPictures = pictureService.queryByProduct(tproduct);  
-			ProjectPictureResult projectPictureResult = new ProjectPictureResult(tproduct,tPictures);
-			projectPictureResults.add(projectPictureResult);
+			//ProjectPictureResult projectPictureResult = new ProjectPictureResult(tproduct,tPictures);
+			//projectPictureResults.add(projectPictureResult);
 		} 
 		model.addAttribute("projectPictureResults", projectPictureResults); 
 		return "/modules/product/projectList";

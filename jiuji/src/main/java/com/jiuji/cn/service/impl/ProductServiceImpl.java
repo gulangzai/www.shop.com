@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.jiuji.cn.dao.TProductMapper;
 import com.jiuji.cn.model.TProduct;
+import com.jiuji.cn.model.TProductDto;
 import com.jiuji.cn.service.ProductService;
 
 @Service
@@ -16,14 +17,14 @@ public class ProductServiceImpl implements ProductService {
 	TProductMapper tproductMapper;
 	
 	@Override
-	public TProduct queryById(String f_ProductId) {
+	public TProductDto queryById(String f_ProductId) {
 		// TODO Auto-generated method stub
 		TProduct tproduct = new TProduct(f_ProductId);
 		return tproductMapper.queryById(tproduct);
 	}
 
 	@Override
-	public List<TProduct> queryByClsId(String f_clsId) {
+	public List<TProductDto> queryByClsId(String f_clsId) {
 		// TODO Auto-generated method stub
 		TProduct tproduct = new TProduct();
 		tproduct.setFClsId(Integer.parseInt(f_clsId));

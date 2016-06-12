@@ -47,9 +47,9 @@ public class HomePageServiceImpl implements HomePageService {
 		//获取最新发布的5个商品
 		List<TProductDto> tproducts = tproductMapper.findNewGood();
 		//获取热门发布的5个商品
-		List<TProduct> tproductHots = tproductMapper.findNewHot();
+		List<TProductDto> tproductHots = tproductMapper.findNewHot();
 		//获取特卖发布的5个商品
-		List<TProduct> tproductSpecials = tproductMapper.findNewSpecial();
+		List<TProductDto> tproductSpecials = tproductMapper.findNewSpecial();
 		
 		model.addAttribute("tproducts",tproducts);
 		model.addAttribute("tproductHots",tproductHots);

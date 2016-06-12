@@ -16,6 +16,9 @@
 <link rel="stylesheet" href="${ctxStatic}/css/head.css" type="text/css" />
 <link rel="stylesheet" href="${ctxStatic}/css/homepage/carousel.css" />
 <script src="${ctxStatic}/js/jquery-1.7.1.min.js" type="text/javascript"></script>  
+<%
+String rootFile = request.getScheme()+"://"+request.getServerName()+":8088/file";
+%>
 
 <script> 
 var ctx = '${ctx}';
@@ -183,7 +186,7 @@ var ctx = '${ctx}';
 			<div class="arrival">
 				<ul class="goods">
 				<c:forEach var="tproduct" items="${tproducts}">
-					<li><a href="${ctx}/productCtrl/toSingleProduct.do?f_ProductId=${tproduct.FProductId}" target="_blank"><img src="${ctxStatic}/images/${tproduct.path}"
+					<li><a href="${ctx}/productCtrl/toSingleProduct.do?f_ProductId=${tproduct.FProductId}" target="_blank"><img src="<%=rootFile%>/${tproduct.path}"
 							alt="${tproduct.FProductName}" /></a> <span class="txt">${tproduct.FPrice}RMB</span></li> 
 			    </c:forEach>  
 				</ul>
@@ -194,7 +197,7 @@ var ctx = '${ctx}';
 			<div class="arrival">
 				<ul class="goods"> 
 				<c:forEach var="tproductHot" items="${tproductHots}">
-					<li><a href="${ctx}/productCtrl/toSingleProduct.do?f_ProductId=${tproductHot.FProductId}" target="_blank"><img src="${ctxStatic}/images/${tproductHot.FProductPic}"
+					<li><a href="${ctx}/productCtrl/toSingleProduct.do?f_ProductId=${tproductHot.FProductId}" target="_blank"><img src="<%=rootFile%>/${tproductHot.path}"
 							alt="${tproductHot.FProductName}" /></a> <span class="txt">${tproductHot.FPrice}RMB</span></li>
 			    </c:forEach>  
 				</ul>
@@ -205,7 +208,7 @@ var ctx = '${ctx}';
 			<div class="arrival">
 				<ul class="goods">
 			  	 <c:forEach var="tproductSpecial" items="${tproductSpecials}">
-					<li><a href="${ctx}/productCtrl/toSingleProduct.do?f_ProductId=${tproductSpecial.FProductId}" target="_blank"><img src="${ctxStatic}/images/${tproductSpecial.FProductPic}"
+					<li><a href="${ctx}/productCtrl/toSingleProduct.do?f_ProductId=${tproductSpecial.FProductId}" target="_blank"><img src="<%=rootFile%>/${tproductSpecial.path}"
 							alt="${tproductSpecial.FProductName}" /></a> <span class="txt">${tproductSpecial.FPrice}RMB</span></li>
 			     </c:forEach> 
 				</ul>

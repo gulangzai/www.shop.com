@@ -28,19 +28,19 @@ public interface TProductMapper {
 	 * 获得热门的商品
 	 * @return 
 	 */
-	List<TProduct> findNewHot();
+	List<TProductDto> findNewHot();
 	/**
 	 * 获得特卖商品
 	 * @return 
 	 */
-	List<TProduct> findNewSpecial();
+	List<TProductDto> findNewSpecial();
 
-	TProduct queryById(TProduct tproduct);
+	TProductDto queryById(TProduct tproduct);
 
 	/**
 	 * desc:根据类型获取商品
 	 * @param tproduct
 	 * @return
 	 */
-	List<TProduct> queryByType(TProduct tproduct);
+	List<TProductDto> queryByType(TProduct tproduct);
 }

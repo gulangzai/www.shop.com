@@ -5,7 +5,8 @@ import java.util.List;
 import com.jiuji.cn.model.TCarousel;
 import com.jiuji.cn.model.TClass;
 import com.jiuji.cn.model.TPicture;
-import com.jiuji.cn.model.TProduct; 
+import com.jiuji.cn.model.TProduct;
+import com.jiuji.cn.model.TProductDto; 
 
 public interface TPictureMapper {
 	
@@ -27,5 +28,5 @@ public interface TPictureMapper {
 
 	TProduct queryById(TProduct tproduct);
 
-	List<TPicture> queryByProduct(TProduct tproduct);
+	List<TPicture> queryByProduct(TProductDto tproduct);
 }

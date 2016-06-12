@@ -3,11 +3,12 @@ package com.jiuji.cn.service;
 import java.util.List;
 
 import com.jiuji.cn.model.TProduct;
+import com.jiuji.cn.model.TProductDto;
 
 public interface ProductService {
 
-	TProduct queryById(String f_ProductId);
+	TProductDto queryById(String f_ProductId);
 
-	List<TProduct> queryByClsId(String f_clsId);
+	List<TProductDto> queryByClsId(String f_clsId);
 
 }
