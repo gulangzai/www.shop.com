@@ -33,6 +33,8 @@
 	================================================== -->
 	<link rel="shortcut icon" href="favicon.png" >
 
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=Y664M6jLjSlV0YRLDv0BtSsAoh7PxQU3"></script>
+
 </head>
 
 <body>
@@ -725,13 +727,11 @@
          <div class="twelve columns">
 
             <ul class="social-links">
-               <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-               <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-               <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-               <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-               <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-               <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-               <li><a href="#"><i class="fa fa-skype"></i></a></li>
+                <li><a href="http://www.linkedin.com/in/%E6%9D%8E-%E7%9B%8A-36723972?trk=hp-identity-photo" target="blank"><i class="fa fa-linkedin"></i></a></li>
+               <li><a href="https://github.com/4337222liyi/" target="blank"><i class="fa fa-github"></i></a></li>
+               <li><a href="http://weibo.com/u/3186276450/home?topnav=1&wvr=6" target="blank"><i class="fa fa-weibo"></i></a></li> 
+               <li><a href="http://www.renren.com/429075517/profile" target="blank"><i class="fa  fa-renren"></i></a></li>
+               <li><a href="http://user.qzone.qq.com/1871710810/main" target="blank"><i class="fa  fa-qq"></i></a></li>  
             </ul>
 
             <ul class="copyright">
@@ -760,6 +760,37 @@
    <script src="js/wow.min.js"></script>
    <script src="js/jquery.nicescroll.min.js"></script>
    <script src="js/script.js"></script>
+
+<script type="text/javascript">
+		var map = new BMap.Map('map');
+		map.centerAndZoom(new BMap.Point(121.51371,31.288269), 16);
+		
+		var  mapStyle ={ 
+		        features: ["road", "building","water","land"],//隐藏地图上的poi
+		        style : "dark"  //设置地图风格为高端黑
+		    }
+		map.setMapStyle(mapStyle);
+		
+		var point = new BMap.Point(121.51371,31.288269);
+		map.centerAndZoom(point, 16);
+		var marker = new BMap.Marker(point);  // 创建标注
+		map.addOverlay(marker);               // 将标注添加到地图中
+		marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+		
+		 
+		function checkhHtml5()   
+		        {   
+		            if (typeof(Worker) === "undefined")     
+		            {   
+		                if(navigator.userAgent.indexOf("MSIE 9.0")<=0)  
+						   {  
+						 	 alert("定制个性地图示例：IE9以下不兼容，推荐使用百度浏览器、chrome、firefox、safari、IE10");   
+						   }  
+		                
+		            }  
+		        }
+		 checkhHtml5();     
+</script>
 
 </body>
 
