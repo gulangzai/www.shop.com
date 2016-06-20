@@ -199,6 +199,16 @@ header .banner-text hr {
   opacity: 0;
 }
 
+video{
+	position:fixed;
+	right:0;
+	bottom:0;
+	min-width:100%;
+	min-height:100%;
+	width:auto;
+	height:auto;
+	z-index:-9999;
+}
 
 
 
@@ -517,7 +527,7 @@ ul#nav li a:hover {
 /* ------------------------------------------------------------------ */
 
 #resume {
-  background: #fff;
+  /**background: #fff;*/
   overflow: hidden;
   padding-bottom: 72px;
   padding-top: 90px;
