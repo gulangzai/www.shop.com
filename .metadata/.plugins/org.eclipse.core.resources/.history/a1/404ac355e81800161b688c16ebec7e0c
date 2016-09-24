@@ -1,9 +1,0 @@
-package com.jiuji.cn.service;
-
-import com.jiuji.cn.model.TProduct;
-
-public interface ProductService {
-
-	TProduct queryById(String f_ProductId);
-
-}

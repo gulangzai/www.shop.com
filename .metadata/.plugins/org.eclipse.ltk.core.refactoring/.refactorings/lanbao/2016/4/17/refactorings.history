@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Copy element &apos;connectblack.png&apos; to &apos;product&apos;&#x0D;&#x0A;- Original project: &apos;lanbao&apos;&#x0D;&#x0A;- Destination element: &apos;product&apos;&#x0D;&#x0A;- Original element: &apos;connectblack.png&apos;" description="Copy file" element1="WebRoot/images/connectblack.png" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1461377874846" target="/shop/src/main/webapp/static/images/product" units="0" version="1.0"/>
-</session>
